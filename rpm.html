@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ravens Progressive Matrix</title>
+        <link rel="icon" href="./static/logo.png">
+        <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> 
+    </head>
+    <body>
+        <nav class="blue" role="navigation">
+            <div class="nav-wrapper container">
+                <a id="testnamenav" class="brand-logo orange-text text-lighten-2">Ravens Progressive Matrix</a>
+            </div>
+        </nav>
+        <div id ="change_ui" style="margin-bottom: 60px;">
+        </div>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/6.6.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+
+
+        <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyATuQBI1JJ9sI4jyLjvKbLQX6pzPeGfOMA",
+            authDomain: "amaatraid.firebaseapp.com",
+            databaseURL: "https://amaatraid.firebaseio.com",
+            projectId: "amaatraid",
+            storageBucket: "amaatraid.appspot.com",
+            messagingSenderId: "829220285103",
+            appId: "1:829220285103:web:61bf5d3ee37e096e65c25a"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        </script>
+        <script>
+            var result  = [0,0,0,0,0,0,0,0,0,0,0,0];
+            var answers = [[4,5,1,2,6,3,6,2,1,3,5,4],[2,6,1,2,1,3,5,6,4,3,4,5],[8,2,3,8,7,4,5,1,7,6,1,2],[3,4,3,7,8,6,5,4,1,2,5,6],[7,6,8,2,1,5,2,4,1,6,3,5]];
+            var section_no = 0;
+            var score = 0;
+            var image_no = 1;
+            window.onload = display_set_lower();
+
+            function display_set_lower()
+            {
+                var content = '';
+                for(var ques_num=1;ques_num<13;ques_num++)
+                {
+                    content+=
+                    `<div style="padding:30px 0px;" id="ques_seperator">
+                    <div id="ques${ques_num}" style="clear: both; padding: 15px 0px;" class="question">
+                        <div style="float: left; width: 50%; padding:30px 0px 45px;" ><img src="static/RPM/A${image_no}.png" id="img${ques_num}" width="700px" height="500px"/></div>
+                        <div style="float: right; width:50%; margin-top:120px;" class="center">
+                            <h5>Choose The Right Pattern</h5>
+                            <table style="margin-top: 130px;">
+                                <tr>
+                                    <td class="center"><button id ="ans${ques_num}1" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=1 onClick="set_result(this.id)">1</button></td>
+                                    <td class="center"><button id ="ans${ques_num}2" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=2 onClick="set_result(this.id)">2</button></td>
+                                    <td class="center"><button id ="ans${ques_num}3" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=3 onClick="set_result(this.id)">3</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="center"><button id ="ans${ques_num}4" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=4 onClick="set_result(this.id)">4</button></td>
+                                    <td class="center"><button id ="ans${ques_num}5" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=5 onClick="set_result(this.id)">5</button></td>
+                                    <td class="center"><button id ="ans${ques_num}6" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=6 onClick="set_result(this.id)">6</button></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                    <hr style="border: 1px solid black;clear: both;"/>`
+                    image_no+=1
+                }
+                content+=
+                `<div class="center" style="padding:50px 0px 10px;">
+                    <input id="${section_no}submit" class="waves-effect waves-light btn-large" type="submit" onClick="calc_res(this.id)"/>
+                </div>`
+            document.getElementById("change_ui").innerHTML = content;
+            }
+
+            function display_set_higher()
+            {
+                var content = '';
+                for(var ques_num=1;ques_num<13;ques_num++)
+                {
+                    content+=
+                    `<div style="padding:30px 0px" id="ques_seperator">
+                    <div id="ques${ques_num}" style="clear: both; padding: 15px 0px;" class="question">
+                        <div style="float: left; width: 50%; padding:30px 0px 45px;" ><img src="static/RPM/A${image_no}.png" id="img${ques_num}" width="700px" height="500px"/></div>
+                        <div style="float: right; width:50%; margin-top:120px;" class="center">
+                            <h5>Choose The Right Pattern</h5>
+                            <table style="margin-top: 130px;">
+                                <tr>
+                                    <td class="center"><button id ="ans${ques_num}1" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=1 onClick="set_result(this.id)">1</button></td>
+                                    <td class="center"><button id ="ans${ques_num}2" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=2 onClick="set_result(this.id)">2</button></td>
+                                    <td class="center"><button id ="ans${ques_num}3" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=3 onClick="set_result(this.id)">3</button></td>
+                                    <td class="center"><button id ="ans${ques_num}4" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=4 onClick="set_result(this.id)">4</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="center"><button id ="ans${ques_num}5" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=5 onClick="set_result(this.id)">5</button></td>
+                                    <td class="center"><button id ="ans${ques_num}6" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=6 onClick="set_result(this.id)">6</button></td>
+                                    <td class="center"><button id ="ans${ques_num}7" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=7 onClick="set_result(this.id)">7</button></td>
+                                    <td class="center"><button id ="ans${ques_num}8" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=8 onClick="set_result(this.id)">8</button></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <hr style="border: 1px solid black;clear: both;"/>`
+                    image_no+=1
+                }
+                content+=
+                `<div class="center" style="padding:50px 0px 10px;">
+                    <input id="${section_no}submit" class="waves-effect waves-light btn-large" type="submit" onClick="calc_res(this.id)"/>
+                </div>`
+                document.getElementById("change_ui").innerHTML = content;
+            }
+
+            function nextChar(c) {
+                return String.fromCharCode(c.charCodeAt(0) + 1);
+            }
+
+            function cal_final_res()
+            {
+                window.location = 'bst.html';
+            }
+
+            function calc_res(clicked_id)
+            {
+                for(var i =0;i<12;i++)
+                {
+                    if(result[i]==answers[section_no][i])
+                    {
+                        score+=1;
+                    }
+                }
+                result  = [0,0,0,0,0,0,0,0,0,0,0,0];
+                window.scrollTo(0,0);
+                section_no+=1;
+                if (section_no<2)
+                {
+                    display_set_lower();
+                }
+                else if (section_no<5)
+                {
+                    display_set_higher();
+                }
+                else
+                {
+                    cal_final_res();
+                }
+            }
+
+            function set_result(clicked_id)
+            {
+                var ques = parseInt(clicked_id.slice(3,clicked_id.length-1))-1;
+                var val = clicked_id[clicked_id.length-1];
+                result[ques] = parseInt(val);
+                var id = clicked_id.slice(0,clicked_id.length-1);
+                if (section_no<2)
+                {
+                    for(var i=1;i<7;i++)
+                    {
+                        var set_id = id.concat(i);
+                        document.getElementById(set_id).className ="waves-effect waves-light btn-large";
+                    }
+                }
+                else
+                {
+                    for(var i=1;i<9;i++)
+                    {
+                        var set_id = id.concat(i);
+                        document.getElementById(set_id).className ="waves-effect waves-light btn-large";
+                    }
+                }
+                document.getElementById(clicked_id).className ="btn-large disabled";
+            }
+        </script>
+    </body>
+</html>

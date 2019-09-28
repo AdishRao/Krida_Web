@@ -1,0 +1,356 @@
+1."Crows", Laugh
+yes
+no
+could have passed the item if the opportunity was present
+2. Balance head 
+yes
+no
+could have passed the item if the opportunity was present
+3.    Grasps objects within reach
+yes
+no
+could have passed the item if the opportunity was present
+4.    Reaches for familiar persons
+yes
+no
+could have passed the item if the opportunity was present
+5.    Rolls over, (unassisted)
+yes
+no
+could have passed the item if the opportunity was present
+6.    Reaches for nearby objects
+yes
+no
+could have passed the item if the opportunity was present
+7.    Occupies self-upright
+yes
+no
+could have passed the item if the opportunity was present
+8.    Sits unsupported
+yes
+no
+could have passed the item if the opportunity was present
+9.    Pulls self upright
+yes
+no
+could have passed the item if the opportunity was present
+10. "Talks", imitates sounds
+yes
+no
+could have passed the item if the opportunity was present
+11. Drinks from cup or glass assisted
+yes
+no
+could have passed the item if the opportunity was present
+12. Moves about on floor (creeping, crawling)
+yes
+no
+could have passed the item if the opportunity was present
+13. Grasps with thumb and finger
+yes
+no
+could have passed the item if the opportunity was present
+14. Demands personal attention
+yes
+no
+could have passed the item if the opportunity was present
+15. Stands alone
+yes
+no
+could have passed the item if the opportunity was present
+16. Does not drool
+yes
+no
+could have passed the item if the opportunity was present
+17. Follows simple instructions
+yes
+no
+could have passed the item if the opportunity was present
+18. Walks about room unattended
+yes
+no
+could have passed the item if the opportunity was present
+19. Marks with pencil or crayon or chalk
+yes
+no
+could have passed the item if the opportunity was present
+20. Masticates (chews) solid or semi-solid food
+yes
+no
+could have passed the item if the opportunity was present
+21. Pulls off clothes
+yes
+no
+could have passed the item if the opportunity was present
+22. Transfers objects
+yes
+no
+could have passed the item if the opportunity was present
+23. Overcomes simple obstacles
+yes
+no
+could have passed the item if the opportunity was present
+24. Fetches or carries familiar objects
+yes
+no
+could have passed the item if the opportunity was present
+25. Drinks from cup or glass
+yes
+no
+could have passed the item if the opportunity was present
+26. Walks without support
+yes
+no
+could have passed the item if the opportunity was present
+27. Plays with other children
+yes
+no
+could have passed the item if the opportunity was present
+28. Eats with own hands (biscuits, bread, etc.)
+yes
+no
+could have passed the item if the opportunity was present
+29. Goes about hours or yard
+yes
+no
+could have passed the item if the opportunity was present
+30. Discriminates edible substances from non-edibles
+yes
+no
+could have passed the item if the opportunity was present
+31. Uses names of familiar objects
+yes
+no
+could have passed the item if the opportunity was present
+32. Walks upstairs unassisted
+yes
+no
+could have passed the item if the opportunity was present
+33. Unwraps sweets, chocolates
+yes
+no
+could have passed the item if the opportunity was present
+34. Talks in short sentences
+yes
+no
+could have passed the item if the opportunity was present
+35. Signals to go to toilet
+yes
+no
+could have passed the item if the opportunity was present
+36. Initiates own play activities
+yes
+no
+could have passed the item if the opportunity was present
+37. Removes shirt to or frock if unbuttoned
+yes
+no
+could have passed the item if the opportunity was present
+38. Eats with spoon/hands (food)
+yes
+no
+could have passed the item if the opportunity was present
+39. Gets drink (water) unassisted
+yes
+no
+could have passed the item if the opportunity was present
+40. Dries own hands
+yes
+no
+could have passed the item if the opportunity was present
+41. Avoids simple hazards
+yes
+no
+could have passed the item if the opportunity was present
+42. Puts on short or frock unassisted (need not button)
+yes
+no
+could have passed the item if the opportunity was present
+43. Can do paper folding
+yes
+no
+could have passed the item if the opportunity was present
+44. Relates experience
+yes
+no
+could have passed the item if the opportunity was present
+45. Walks downstairs, one step at a time
+yes
+no
+could have passed the item if the opportunity was present
+46. Plays co-operatively at kindergarten level.
+yes
+no
+could have passed the item if the opportunity was present
+47. Buttons shirt or frock
+yes
+no
+could have passed the item if the opportunity was present
+48. Helps at little household tasks
+yes
+no
+could have passed the item if the opportunity was present
+49. "Performs" for others
+yes
+no
+could have passed the item if the opportunity was present
+50. Washes hands unaided
+yes
+no
+could have passed the item if the opportunity was present
+51. Cares for self at toilet
+yes
+no
+could have passed the item if the opportunity was present
+52. Washes face unassisted
+yes
+no
+could have passed the item if the opportunity was present
+53. Goes about neighborhood Unattended
+yes
+no
+could have passed the item if the opportunity was present
+54. Dresses self expect for trying
+yes
+no
+could have passed the item if the opportunity was present
+55. Uses pencil or crayon or chalk for drawing
+yes
+no
+could have passed the item if the opportunity was present
+56. Plays competitive exercise games
+yes
+no
+could have passed the item if the opportunity was present
+57. Uses hoops, flies kites, or uses knife
+yes
+no
+could have passed the item if the opportunity was present
+58. Prints (writes) simple words
+yes
+no
+could have passed the item if the opportunity was present
+59. Plays simple games which require talking turns
+yes
+no
+could have passed the item if the opportunity was present
+60. Is trusted with money
+yes
+no
+could have passed the item if the opportunity was present
+61. Goes to school unattended
+yes
+no
+could have passed the item if the opportunity was present
+62. Mixes rice "properly" unassisted
+yes
+no
+could have passed the item if the opportunity was present
+63. Use pencil or chalk for writing
+yes
+no
+could have passed the item if the opportunity was present
+64. Bathes self with assistance
+yes
+no
+could have passed the item if the opportunity was present
+65. Goes to bed unassisted
+yes
+no
+could have passed the item if the opportunity was present
+66. Can differentiate between AM & PM
+yes
+no
+could have passed the item if the opportunity was present
+67. Helps himself during meals
+yes
+no
+could have passed the item if the opportunity was present
+68. Understands and keeps family secrets
+yes
+no
+could have passed the item if the opportunity was present
+69. Participants in pre-adolescent
+yes
+no
+could have passed the item if the opportunity was present
+70. Combs or burhses hair
+yes
+no
+could have passed the item if the opportunity was present
+71. Uses tools or utensils
+yes
+no
+could have passed the item if the opportunity was present
+72. Does routine household tasks
+yes
+no
+could have passed the item if the opportunity was present
+73. Reads on own initiative
+yes
+no
+could have passed the item if the opportunity was present
+74. Bathes self unaided
+yes
+no
+could have passed the item if the opportunity was present
+75. Cares for self at meals
+yes
+no
+could have passed the item if the opportunity was present
+76. Makes minor purchase
+yes
+no
+could have passed the item if the opportunity was present
+77. Goes around hometown freely
+yes
+no
+could have passed the item if the opportunity was present
+78. Distinguishes between friends any playmates
+yes 
+no
+could have passed the item if the opportunity was present
+79.  Makes independent choice of shops
+yes
+no
+could have passed the item if the opportunity was present
+80. Does small remunerative work; makes articles
+yes
+no
+could have passed the item if the opportunity was present
+81. Follows local current events
+yes
+no
+could have passed the item if the opportunity was present
+82. Does simple creative work
+yes
+no
+could have passed the item if the opportunity was present
+83. Is left to care for self or others
+yes
+no
+could have passed the item if the opportunity was present
+84.  Enjoys reading books, newspapers and magazines
+yes
+no
+could have passed the item if the opportunity was present
+85.  Plays difficult games
+yes
+no
+could have passed the item if the opportunity was present
+86. Exercises complete care of dress
+yes
+no
+could have passed the item if the opportunity was present
+87. Buys own clothing accessories
+yes
+no
+could have passed the item if the opportunity was present
+88.  Engages of adolescent group activities
+yes
+no
+could have passed the item if the opportunity was present
+89. Performs responsible routine chores
+yes
+no
+could have passed the item if the opportunity was present

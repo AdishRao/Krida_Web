@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <link rel="icon" href="./static/logo.png">
+        <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> 
+    </head>
+    <body>
+        <nav class="blue" role="navigation"></nav>
+        <div id ="change_ui">
+            <h1 class="center blue-text">Login</h1>
+            <form class="center">
+                <div class="center row">
+                    <div class="col s4"></div>
+                    <div class="center col s5">
+                        <input type="email" placeholder="Email" id="email_id"/>
+                        <input type="password" placeholder="Password" id="password"/>
+                        <input type="submit" id="submit"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <footer class="page-footer blue" style="overflow: hidden;position: fixed;bottom: 0; width: 100%;">
+                <div class="container"></div>
+                <div class="footer-copyright">
+                  <div class="container">
+                    Vincere Solutions | 2017
+                  </div>
+                </div>
+        </footer>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/6.6.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+
+
+        <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyATuQBI1JJ9sI4jyLjvKbLQX6pzPeGfOMA",
+            authDomain: "amaatraid.firebaseapp.com",
+            databaseURL: "https://amaatraid.firebaseio.com",
+            projectId: "amaatraid",
+            storageBucket: "amaatraid.appspot.com",
+            messagingSenderId: "829220285103",
+            appId: "1:829220285103:web:61bf5d3ee37e096e65c25a"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        </script>
+
+        <script>
+            var submit = document.getElementById("submit");
+            submit.addEventListener('click',login);
+            function login(e)
+            {
+                e.preventDefault();
+                var email = document.getElementById("email_id").value;
+                var password = document.getElementById("password").value;
+                firebase.auth().signInWithEmailAndPassword(email, password)
+                .then(function(firebaseUser) {
+                    document.getElementById("change_ui").innerHTML="";
+                    load_options();
+                })
+                .catch(function(error) {
+                    alert("Wrong Email or Password")
+                });
+            }
+
+            function load_options()
+            {
+                var page_content; 
+                page_content = 
+                '<h1 class="center blue-text">Enter Student Detail</h1>\
+                <form class="center">\
+                    <div class="center row"><div class="col s4"></div><div class="center col s5">\
+                        <input type="text" placeholder="Full Name" id="Name"/>\
+                        <input type="number" placeholder="Age [6-9]" id="Age" min="6" max="9"/>\
+                        <input type="text" placeholder="Gender" id="Gender"/>\
+                        <input type="date" placeholder="DOB" id="DOB"/>\
+                        <input type="submit" id="new_student"/>\
+                    </div></div>\
+                </form>'
+                document.getElementById("change_ui").innerHTML=page_content;
+                new_student = document.getElementById("new_student");
+                new_student.addEventListener('click',add_student);
+            }
+
+            function add_student(e)
+            {
+                e.preventDefault();
+                var name = document.getElementById("Name").value;
+                var age = document.getElementById("Age").value;
+                var gender = document.getElementById("Gender").value;
+                var dob = document.getElementById("DOB").value;
+                var dob = dob.replace(/\//g, "-");
+                var unique_id = name+dob;
+                var current_test = 0;
+                var database = firebase.database();
+                database.ref('Student/' + unique_id).set({
+                    "name" : name,
+                    "age" : age,
+                    "gender" : gender,
+                    "dob" : dob
+                });
+                database.ref(unique_id).set({
+                "name" : name,
+                "age" : age,
+                "gender" : gender,
+                "dob" : dob
+                });
+                var today = new Date();
+                database.ref(unique_id+'/'+(today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear())).set({
+                current_test: 0
+                });
+                localStorage.setItem("unique_id",unique_id);
+                window.location = 'rpm.html';
+            }
+        </script>
+    </body>
+</html>
