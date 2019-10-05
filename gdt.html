@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Gessel's Drawing Test</title>
+        <link rel="icon" href="./static/logo.png">
+        <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> 
+    </head>
+    <body>
+        <nav class="blue" role="navigation">
+            <div class="nav-wrapper container">
+                <a id="testnamenav" class="brand-logo orange-text text-lighten-2">Gessel's Drawing Test</a>
+            </div>
+        </nav>
+        <div id ="change_ui" style="margin-bottom: 60px;">
+        </div>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/6.6.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+
+
+        <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyATuQBI1JJ9sI4jyLjvKbLQX6pzPeGfOMA",
+            authDomain: "amaatraid.firebaseapp.com",
+            databaseURL: "https://amaatraid.firebaseio.com",
+            projectId: "amaatraid",
+            storageBucket: "amaatraid.appspot.com",
+            messagingSenderId: "829220285103",
+            appId: "1:829220285103:web:61bf5d3ee37e096e65c25a"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        </script>
+        <script>
+            window.onload = load_ques();
+            var count = 10;
+            var wrong_count = 0;
+            var question_count = 1;
+            var count_holder = [];
+            var agegroup = [11,13,17,20,24];
+            var age = 6;
+            function load_ques()
+            {
+                var content = '';
+                var inital_questions = ["Palmer hold on writing instruments?","Spontaneous scribble?", "Purposive horizontal scribble?", "Makes dots?", "Tripod hold on writing instruments?", "Purposive vertical scribble?", "Imitates vertical strokes?", "Extends tail to dots in different directions?", "Imitates horizontal strokes?", "Traces outline of objects/ palm on paper?"];
+                for(var i=0; i<inital_questions.length;i++)
+                {
+                    content+=
+                    `
+                        <div id = "question${i}" style = "padding: 20px 0px;" class = "center">
+                            <div class = "row" style="margin-bottom: 5px">
+                                <div class ="col s3"></div>
+                                <div class ="col s4">
+                                <p style="font-size:20px;"> ${inital_questions[i]}</p>
+                                </div>
+                                <div class ="col s4" style="padding-top:15px">
+                                        <button id ="${i}" class="btn waves-effect waves-light btn-small orange lighten-3" onClick="set_result(this.id)">no</button>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                }
+                content+= `
+                <div class="row">
+                    <div class="col s6"></div>
+                    <div class = "center">
+                        <input type = "submit" id = "submit" class="waves-effect waves-light btn-large" onClick="display()"/>
+                    </div>
+                </div>
+                `
+                document.getElementById("change_ui").innerHTML = content;
+            }
+            function set_result(clicked_id)
+            {
+                count-=1;
+                document.getElementById(clicked_id).className = 'btn waves-effect waves-light btn-small orange darken-2';
+            }
+            function display()
+            {   
+                window.scrollTo(0,0);
+                var contents = '';
+                for(var i=1;i<=agegroup[age-6];i++)
+                {
+                    contents+=
+                    `
+                    <div id = "question${i}" style = "padding: 5px 0px;" class = "center">
+                        <div style="float:left; width:70%;">
+                            <img src = "/static/GDT/GDT${i}.png" width=600px height=600px />
+                        </div> 
+                        <div style="float:right; width:30%;">
+                            <button id ="y${i}" class="btn waves-effect waves-light btn-small teal darken-3" onClick="set_result_image(this.id)" style="margin-top:260px;">yes</button>
+                            <button id ="n${i}" class="btn waves-effect waves-light btn-small orange lighten-3" onClick="set_result_image(this.id)" style="margin-top:260px;">no</button>
+                        </div>
+                    </div> 
+                    `
+                    count_holder.push(1);
+                }
+                contents+=
+                `
+                <div style = "padding: 5px 0px;" class = "center">
+                    <div style="float:left; width:70%;">
+                    </div> 
+                    <div style="float:right; width:30%;">
+                        <input type = "submit" id = "submit" class="waves-effect waves-light btn-large" onClick="finish()"/>
+                    </div>
+                </div> 
+                `
+                document.getElementById("change_ui").innerHTML = contents;
+            }
+            function set_result_image(click_id)
+            {
+                var val = click_id[0];
+                var number = click_id.slice(1);
+                if (val=="y")
+                {
+                    count_holder[number] = 1;
+                    document.getElementById(click_id).className = "btn waves-effect waves-light btn-small teal darken-3";
+                    document.getElementById(`n${number}`).className = "btn waves-effect waves-light btn-small orange lighten-3";
+                }
+                else
+                {
+                    count_holder[number] = 0;
+                    document.getElementById(click_id).className = "btn waves-effect waves-light btn-small orange darken-2";
+                    document.getElementById(`y${number}`).className = "btn waves-effect waves-light btn-small teal lighten-3";
+                }
+            }
+            function finish()
+            {
+                for(var i=1;i<=agegroup[age-6];i++)
+                {
+                    if (count_holder[i]==0)
+                    {
+                        wrong_count+=1;
+                    }
+                }
+                count = count + agegroup[age-6] - wrong_count;
+                window.scrollTo(0,0);
+                alert(count);
+                //TODO: read CSV and store final result
+            }
+        </script>
+    </body>
+</html>

@@ -44,6 +44,7 @@
             var section_no = 0;
             var score = 0;
             var image_no = 1;
+            var age = 9; //TODO: get age in global
             window.onload = display_set_lower();
 
             function display_set_lower()
@@ -59,14 +60,14 @@
                             <h5>Choose The Right Pattern</h5>
                             <table style="margin-top: 130px;">
                                 <tr>
-                                    <td class="center"><button id ="ans${ques_num}1" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=1 onClick="set_result(this.id)">1</button></td>
-                                    <td class="center"><button id ="ans${ques_num}2" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=2 onClick="set_result(this.id)">2</button></td>
-                                    <td class="center"><button id ="ans${ques_num}3" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=3 onClick="set_result(this.id)">3</button></td>
+                                    <td class="center"><button id ="ans${ques_num}1" class="waves-effect waves-light btn-large teal lighten-3" style="width: 100px; height: 60px;" value=1 onClick="set_result(this.id)">1</button></td>
+                                    <td class="center"><button id ="ans${ques_num}2" class="waves-effect waves-light btn-large teal lighten-3" style="width: 100px; height: 60px;" value=2 onClick="set_result(this.id)">2</button></td>
+                                    <td class="center"><button id ="ans${ques_num}3" class="waves-effect waves-light btn-large teal lighten-3" style="width: 100px; height: 60px;" value=3 onClick="set_result(this.id)">3</button></td>
                                 </tr>
                                 <tr>
-                                    <td class="center"><button id ="ans${ques_num}4" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=4 onClick="set_result(this.id)">4</button></td>
-                                    <td class="center"><button id ="ans${ques_num}5" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=5 onClick="set_result(this.id)">5</button></td>
-                                    <td class="center"><button id ="ans${ques_num}6" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=6 onClick="set_result(this.id)">6</button></td>
+                                    <td class="center"><button id ="ans${ques_num}4" class="waves-effect waves-light btn-large teal lighten-3" style="width: 100px; height: 60px;" value=4 onClick="set_result(this.id)">4</button></td>
+                                    <td class="center"><button id ="ans${ques_num}5" class="waves-effect waves-light btn-large teal lighten-3" style="width: 100px; height: 60px;" value=5 onClick="set_result(this.id)">5</button></td>
+                                    <td class="center"><button id ="ans${ques_num}6" class="waves-effect waves-light btn-large teal lighten-3" style="width: 100px; height: 60px;" value=6 onClick="set_result(this.id)">6</button></td>
                                 </tr>
                             </table>
                         </div>
@@ -95,16 +96,16 @@
                             <h5>Choose The Right Pattern</h5>
                             <table style="margin-top: 130px;">
                                 <tr>
-                                    <td class="center"><button id ="ans${ques_num}1" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=1 onClick="set_result(this.id)">1</button></td>
-                                    <td class="center"><button id ="ans${ques_num}2" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=2 onClick="set_result(this.id)">2</button></td>
-                                    <td class="center"><button id ="ans${ques_num}3" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=3 onClick="set_result(this.id)">3</button></td>
-                                    <td class="center"><button id ="ans${ques_num}4" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=4 onClick="set_result(this.id)">4</button></td>
+                                    <td class="center"><button id ="ans${ques_num}1" class="waves-effect waves-light btn-large teal lighten-3" style="width: 100px; height: 60px;" value=1 onClick="set_result(this.id)">1</button></td>
+                                    <td class="center"><button id ="ans${ques_num}2" class="waves-effect waves-light btn-large teal lighten-3" style="width: 100px; height: 60px;" value=2 onClick="set_result(this.id)">2</button></td>
+                                    <td class="center"><button id ="ans${ques_num}3" class="waves-effect waves-light btn-large teal lighten-3" style="width: 100px; height: 60px;" value=3 onClick="set_result(this.id)">3</button></td>
+                                    <td class="center"><button id ="ans${ques_num}4" class="waves-effect waves-light btn-large teal lighten-3" style="width: 100px; height: 60px;" value=4 onClick="set_result(this.id)">4</button></td>
                                 </tr>
                                 <tr>
-                                    <td class="center"><button id ="ans${ques_num}5" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=5 onClick="set_result(this.id)">5</button></td>
-                                    <td class="center"><button id ="ans${ques_num}6" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=6 onClick="set_result(this.id)">6</button></td>
-                                    <td class="center"><button id ="ans${ques_num}7" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=7 onClick="set_result(this.id)">7</button></td>
-                                    <td class="center"><button id ="ans${ques_num}8" class="waves-effect waves-light btn-large" style="width: 100px; height: 60px;" value=8 onClick="set_result(this.id)">8</button></td>
+                                    <td class="center"><button id ="ans${ques_num}5" class="waves-effect waves-light btn-large teal lighten-3" style="width: 100px; height: 60px;" value=5 onClick="set_result(this.id)">5</button></td>
+                                    <td class="center"><button id ="ans${ques_num}6" class="waves-effect waves-light btn-large teal lighten-3" style="width: 100px; height: 60px;" value=6 onClick="set_result(this.id)">6</button></td>
+                                    <td class="center"><button id ="ans${ques_num}7" class="waves-effect waves-light btn-large teal lighten-3" style="width: 100px; height: 60px;" value=7 onClick="set_result(this.id)">7</button></td>
+                                    <td class="center"><button id ="ans${ques_num}8" class="waves-effect waves-light btn-large teal lighten-3" style="width: 100px; height: 60px;" value=8 onClick="set_result(this.id)">8</button></td>
                                 </tr>
                             </table>
                         </div>
@@ -126,6 +127,7 @@
 
             function cal_final_res()
             {
+                //TODO: read CSV and store final result
                 window.location = 'bst.html';
             }
 
@@ -166,7 +168,7 @@
                     for(var i=1;i<7;i++)
                     {
                         var set_id = id.concat(i);
-                        document.getElementById(set_id).className ="waves-effect waves-light btn-large";
+                        document.getElementById(set_id).className ="waves-effect waves-light btn-large teal lighten-3";
                     }
                 }
                 else
@@ -174,10 +176,10 @@
                     for(var i=1;i<9;i++)
                     {
                         var set_id = id.concat(i);
-                        document.getElementById(set_id).className ="waves-effect waves-light btn-large";
+                        document.getElementById(set_id).className ="waves-effect waves-light btn-large teal lighten-3";
                     }
                 }
-                document.getElementById(clicked_id).className ="btn-large disabled";
+                document.getElementById(clicked_id).className ="waves-effect waves-light btn-large teal darken-2";
             }
         </script>
     </body>
