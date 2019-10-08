@@ -37,11 +37,28 @@
         
         </script>
         <script>
+            window.onload = load_ques();
             var age = 6;
             var image_present = [1,1,0,1,1,1,0,0];
             var question_count = 0;
             var basal_age = 2.0;
             var additive_age = 0.0;
+            var questions = [[],[],[],[],[],[],[],[]];
+            async function load_ques(){
+                const q = await fetch('static/BST/bst.csv');
+                const data = await q.text();
+                var rows = data.split('\n').slice(1);
+                
+                rows.forEach(row=>{
+                    const column = row.split(',');
+                    for(var i =0;i<8;i++){
+                        questions[i].push(column[i]);
+                    }
+                });
+                console.log(questions);
+
+                
+            }
         </script>
     </body>
 </html>
