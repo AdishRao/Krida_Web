@@ -5,6 +5,15 @@
         <link rel="icon" href="./static/logo.png">
         <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> 
+        <style>
+            td {
+                text-align: center;
+                font-size: 30px;
+                font-weight: bold;
+                border: 1px solid teal;
+                min-width: 150px;
+            }
+        </style>
     </head>
     <body>
         <nav class="blue" role="navigation"></nav>
@@ -46,6 +55,10 @@
             var unique_id;
             var today;
             var age;
+            var rpm_age;
+            var bst_age;
+            var gdt_age;
+            var vl_age;
             window.onload = login_option();
             var submit = document.getElementById("submit");
             submit.addEventListener('click',login);
@@ -106,6 +119,10 @@
                 e.preventDefault();
                 var name = document.getElementById("Name").value;
                 age = document.getElementById("Age").value;
+                rpm_age = age;
+                bst_age = age;
+                gdt_age = age;
+                vl_age = age;
                 var gender = document.getElementById("Gender").value;
                 var dob = document.getElementById("DOB").value;
                 var dob = dob.replace(/\//g, "-");
@@ -131,7 +148,6 @@
                 vineland: -1,
                 gdt: -1
                 });
-                localStorage.setItem("unique_id",unique_id);
                 option_loadpage();
             }
         </script>
@@ -207,7 +223,6 @@
             var rpm_answers = [[4,5,1,2,6,3,6,2,1,3,5,4],[2,6,1,2,1,3,5,6,4,3,4,5],[8,2,3,8,7,4,5,1,7,6,1,2],[3,4,3,7,8,6,5,4,1,2,5,6],[7,6,8,2,1,5,2,4,1,6,3,5]];
             var rpm_section_no = 0;
             var rpm_score = 0;
-            var rpm_age = age; //TODO: get age in global
             var rpm_image_no = 1;
             var rpm_final_result = 0;
 
@@ -368,7 +383,6 @@
             }
         </script>
         <script>
-            var bst_age = age;
             var bst_image_present = [1,1,0,1,1,1,0,0];
             var bst_question_count = 0;
             var bst_basal_age = 2.0;
@@ -515,7 +529,6 @@
             var gdt_question_count = 1;
             var gdt_count_holder = [];
             var gdt_agegroup = [11,13,17,20,24];
-            var gdt_age = age;
             var gdt_final_result;
             function gdt_load_ques()
             {
@@ -639,7 +652,6 @@
             }
         </script>
         <script>
-            var vl_age = age; //TODO: get age in global
             var vl_SA_mapping = [0,0.06,0.12,0.18,0.24,0.30,0.35,0.41,0.47,0.53,0.59,0.65,0.71,0.77,0.83,0.89,0.94,1.0,1.06,1.12,1.18,1.24,1.30,1.35,1.41,1.47,1.53,1.59,1.65,1.71,1.77,1.83,1.89,1.94,2.00,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.0,3.2,3.3,3.5,3.7,3.8,4.0,4.2,4.3,4.5,4.7,4.8,5.0,5.2,5.4,5.6,5.8,6.0,6.3,6.5,6.8,7.0,7.2,7.4,7.6,7.8,8.0,8.3,8.5,8.8,9.0,9.3,9.7,10.0,10.3,10.5,10.8,11.0,11.3,11.7,12.0,12.6,13.2,13.8,14.4,15.0]
             var vl_text_data;
             var vl_last_correct_ques = 0;
