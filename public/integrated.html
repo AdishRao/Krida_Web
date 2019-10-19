@@ -123,6 +123,10 @@
                 bst_age = age;
                 gdt_age = age;
                 vl_age = age;
+                initial_bst_value = -1; 
+                initial_rpm_value = -1;
+                initial_gdt_value = -1; 
+                initial_vl_value = -1;
                 var gender = document.getElementById("Gender").value;
                 var dob = document.getElementById("DOB").value;
                 var dob = dob.replace(/\//g, "-");
@@ -190,7 +194,7 @@
                     <div class="row center">
                         <div class="col s4"></div>
                         <div class="col s4">
-                            <button id="new_child" class="btn-large waves-effect waves-light btn-small orange darken-2" onClick="login_option()" style="min-width:310px;margin-top:10px;">New Student</button>
+                            <button id="new_child" class="btn-large waves-effect waves-light btn-small orange darken-2" onClick="load_options()" style="min-width:310px;margin-top:10px;">New Student</button>
                         </div>
                     </div>
 
@@ -390,6 +394,7 @@
             var bst_questions = [[],[],[],[],[],[],[],[]];
             var bst_correct_no = 0;
             var bst_temp_res = [1,1,1,1,1];
+            var bst_final_result = 0;
             async function bst_load_ques(){
                 const q = await fetch('static/BST/bst.csv');
                 const data = await q.text();
@@ -461,7 +466,15 @@
                 window.scrollTo(0,0);
                 var flag = false;
                 var all_correct = true;
-                for(var i=0;i<5;i++)
+                if(bst_question_count!=1)
+                {
+                    var limit = 5;
+                }
+                else
+                {
+                    var limit = 4;
+                }
+                for(var i=0;i<limit;i++)
                 {
                     if(bst_temp_res[i]==1)
                     {
@@ -529,7 +542,7 @@
             var gdt_question_count = 1;
             var gdt_count_holder = [];
             var gdt_agegroup = [11,13,17,20,24];
-            var gdt_final_result;
+            var gdt_final_result = 0;
             function gdt_load_ques()
             {
                 var gdt_content = '';
@@ -576,7 +589,8 @@
                     `
                     <div id = "question${i}" style = "padding: 5px 0px;" class = "center">
                         <div style="float:left; width:70%;">
-                            <img src = "/static/GDT/GDT${i}.png" width=600px height=600px />
+                            <img src = "static/GDT/GDT${i}.png" width=600px height=600px />
+                            
                         </div> 
                         <div style="float:right; width:30%;">
                             <button id ="y${i}" class="btn waves-effect waves-light btn-small teal darken-3" onClick="gdt_set_result_image(this.id)" style="margin-top:260px;">yes</button>
@@ -656,9 +670,10 @@
             var vl_text_data;
             var vl_last_correct_ques = 0;
             var vl_no_of_wrong = 0;
-            var vl_ques_range = [0,17,34,44,50,56,61,65,70,74,77,81,84,89];
+            var vl_ques_range = [0,17,34,44,50,56,61,65,70,74,77,81,84,89,89];
             var vl_current_age_question_set = 0;
             var vl_res = [];
+            var vl_social_quotient = 0;
             async function vl_load_ques()
             {
                 var resp = await fetch('static/VL/vlques.txt');
@@ -731,10 +746,13 @@
                     }
                     j+=1;
                 }
-                if (vl_current_age_question_set<14 && flag == true)
+                vl_current_age_question_set+=1;
+                if (vl_current_age_question_set<13)
                 {
-                    vl_current_age_question_set+=1
-                    vl_display();
+                    if (flag == true)
+                    {
+                        vl_display();
+                    }
                 }
                 else
                 {
@@ -758,6 +776,12 @@
                 <div style='margin-top:8%;padding:0px 10px;'>
                     <table id='add_result' style="border: 5px solid teal;">
                     </table>
+                </div>
+                <div class="row center">
+                    <div class="col s4"></div>
+                    <div class="col s4">
+                        <button id="return" class="btn-large waves-effect waves-light btn-small orange darken-2" onClick="option_loadpage()" style="min-width:310px;margin-top:10px;">BACK</button>
+                    </div>
                 </div>
                 `;
                 document.getElementById("change_ui").innerHTML = contents;

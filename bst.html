@@ -117,10 +117,19 @@
                 window.scrollTo(0,0);
                 var flag = false;
                 var all_correct = true;
-                for(var i=0;i<5;i++)
+                if(bst_question_count!=1)
+                {
+                    var limit = 5;
+                }
+                else
+                {
+                    var limit = 4;
+                }
+                for(var i=0;i<limit;i++)
                 {
                     if(bst_temp_res[i]==1)
                     {
+                        console.log(i);
                         flag = true;
                     }
                     if(bst_temp_res[i]==0)
