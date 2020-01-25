@@ -1,65 +1,220 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <title>Login</title>
+    <link rel="icon" href="./static/logo.png" />
+    <link
+      href="static/css/materialize.min.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.2.0/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/7.2.0/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.2.0/firebase-database.js"></script>
-    <script defer src="/__/firebase/7.2.0/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/7.2.0/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
+    <!-- <link
+      href="static/css/style.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    /> -->
+    <style>
+      tbody {
+        display: block;
+        padding-top: 0px;
+        height: 450px;
+        overflow: auto;
       }
+
+      thead,
+      tbody tr {
+        margin: 0px;
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+      }
+
+      thead {
+        width: calc(100% - 1em);
+      }
+
+      table {
+        margin-top: 0px;
+        width: 100%;
+      }
+
+      .tabs .tab a {
+        color: #00897b;
+      }
+
+      /*Black color to the text*/
+
+      .tabs .tab a:hover {
+        background-color: #e0f2f1;
+        color: #00897b;
+      }
+
+      /*Text color on hover*/
+      .tabs .tab a:focus,
+      .tabs .tab a:focus.active {
+        background-color: #e0f2f1;
+        outline: none;
+      }
+
+      .tabs .tab a:active {
+        background-color: #e0f2f1;
+        color: #00897b;
+      }
+
+      .tabs .tab a.active {
+        background-color: #e0f2f1;
+        color: #00897b;
+      }
+
+      .tabs .tab a.focus.active {
+        background-color: #e0f2f1;
+        color: #00897b;
+      }
+
+      /*Background and text color when a tab is active*/
+
+      .tabs .indicator {
+        background-color: #00897b;
+      }
+
+      /*Color of underline*/
+
+      .container {
+        margin: 0 auto;
+        max-width: 1280px;
+        width: 90%;
+      }
+
+      @media only screen and (min-width: 601px) {
+        .container {
+          width: 85%;
+        }
+      }
+
+      @media only screen and (min-width: 993px) {
+        .container {
+          width: 70%;
+        }
+      }
+
+      .sidenav {
+        top: 65px;
+        width: 280px;
+      }
+
+      .ofset {
+        padding-left: 280px;
+      }
+
+      @media only screen and (max-width: 992px) {
+        .ofset {
+          padding-left: 0px;
+        }
+      }
+
+      .navbar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #444;
+      }
+
+      .navbar li {
+        float: left;
+        border-right: 1px solid rgb(231, 228, 228);
+      }
+
+      .navbar li:last-child {
+        border-right: none;
+      }
+
+      .navbar li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      .navbar li a:hover:not(.active) {
+        background-color: rgb(161, 158, 158);
+      }
+
+      /* .active {
+        background-color: #2196f3;          TODO:Variable to be change
+      } */
     </style>
   </head>
+
   <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+    <!-- <nav class="blue" role="navigation"></nav> -->
+
+    <div id="change_ui"></div>
+    <!-- footer class="page-footer blue" style="overflow: hidden;position: fixed;bottom: 0; width: 100%;">
+                <div class="container"></div>
+                <div class="footer-copyright">
+                  <div class="container">
+                    Vincere Solutions | 2017
+                  </div>
+                </div>
+        </footer -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: 'AIzaSyATuQBI1JJ9sI4jyLjvKbLQX6pzPeGfOMA',
+        authDomain: 'amaatraid.firebaseapp.com',
+        databaseURL: 'https://amaatraid.firebaseio.com',
+        projectId: 'amaatraid',
+        storageBucket: 'amaatraid.appspot.com',
+        messagingSenderId: '829220285103',
+        appId: '1:829220285103:web:61bf5d3ee37e096e65c25a'
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
+      // Your web app's Firebase configuration
+      var firebaseConfig2 = {
+        apiKey: 'AIzaSyCS2lxbM8uz172Ya9CBQaHPB3IvLf31amk',
+        authDomain: 'hashed-id.firebaseapp.com',
+        databaseURL: 'https://hashed-id.firebaseio.com',
+        projectId: 'hashed-id',
+        storageBucket: 'hashed-id.appspot.com',
+        messagingSenderId: '231744656398',
+        appId: '1:231744656398:web:31350684331d532e90d85f',
+        measurementId: 'G-FB5D3X90SB'
+      };
+      // Initialize Firebase
+      var hasheddb = firebase.initializeApp(firebaseConfig2, 'hasheddb');
     </script>
+    <script src="./static/js/cryp.js" type="text/javascript"></script>
+    <script src="static/js/materialize.min.js" type="text/javascript"></script>
+    <script src="./static/js/load.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <script src="./static/js/menu.js" type="text/javascript"></script>
+    <script src="./static/js/allstudent.js" type="text/javascript"></script>
+    <script src="./static/js/rpm.js" type="text/javascript"></script>
+    <script src="./static/js/bst.js" type="text/javascript"></script>
+    <script src="./static/js/gdt.js" type="text/javascript"></script>
+    <script src="./static/js/vl.js" type="text/javascript"></script>
+    <script src="./static/js/result.js" type="text/javascript"></script>
+    <script src="./static/js/search.js" type="text/javascript"></script>
   </body>
 </html>

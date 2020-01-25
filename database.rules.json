@@ -1,6 +1,25 @@
 {
   "rules": {
     ".read": true,
-    ".write": true
+    ".write": true,    
+      
+		"user": {
+      "$uid": {
+        ".read": "auth.uid == $uid"
+      }
+    },
+  	"School": {
+      "$school": {
+       	".read": "root.child('user').child(auth.uid).val() == $school",
+       	".write": "root.child('user').child(auth.uid).val() == $school" 
+ 	   	}
+    },
+      
+  	"Data": {
+      "$users": {
+       	".read": "root.child('Data').child($users).child('ParentID').val() == auth.uid",
+       	".write": "root.child('Data').child($users).child('ParentID').val() == auth.uid" 
+ 	   	}
+    }	
   }
 }
