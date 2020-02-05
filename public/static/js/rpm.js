@@ -88,7 +88,7 @@ async function rpm_cal_final_res() {
   if (rpm_score == 0) {
     database
       .ref(
-        'Amaatra School/Details/' +
+        '' + school + '/Details/' +
           encid +
           '/tests/' +
           (today.getFullYear() +
@@ -116,7 +116,7 @@ async function rpm_cal_final_res() {
 
   hasheddatabase
     .ref(
-      'Details/' +
+      'School/' + school + '/' + 
         hasheduser +
         '/tests/' +
         (today.getFullYear() +
@@ -131,7 +131,7 @@ async function rpm_cal_final_res() {
 
   database
     .ref(
-      'School/Amaatra School/Details/' +
+      'School/'+school +'/Details/' +
         encid +
         '/tests/' +
         (today.getFullYear() +

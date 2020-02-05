@@ -189,7 +189,7 @@ function vl_calc_res(id) {
 
     hasheddatabase
       .ref(
-        'Details/' +
+        'School/' + school + '/' + 
           hasheduser +
           '/tests/' +
           (today.getFullYear() +
@@ -205,7 +205,7 @@ function vl_calc_res(id) {
     var encid = encrypt(val, unique_id, key, iv);
     database
       .ref(
-        'School/Amaatra School/Details/' +
+        'School/'+school+'/Details/' +
           encid +
           '/tests/' +
           (today.getFullYear() +

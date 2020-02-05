@@ -122,7 +122,7 @@ function bst_display_result() {
 
   hasheddatabase
     .ref(
-      'Details/' +
+      'School/' + school + '/' +
         hasheduser +
         '/tests/' +
         (today.getFullYear() +
@@ -137,7 +137,7 @@ function bst_display_result() {
   var encid = encrypt(val, unique_id, key, iv);
   database
     .ref(
-      'School/Amaatra School/Details/' +
+      'School/'+school+'/Details/' +
         encid +
         '/tests/' +
         (today.getFullYear() +

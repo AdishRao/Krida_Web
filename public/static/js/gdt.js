@@ -106,7 +106,7 @@ async function gdt_finish() {
   if (gdt_count == 0) {
     database
       .ref(
-        'Amaatra School/Details/' +
+        ''+ school + '/Details/' +
           encid +
           '/tests/' +
           (today.getFullYear() +
@@ -133,7 +133,7 @@ async function gdt_finish() {
 
   hasheddatabase
     .ref(
-      'Details/' +
+      'School/' + school + '/' +
         hasheduser +
         '/tests/' +
         (today.getFullYear() +
@@ -148,7 +148,7 @@ async function gdt_finish() {
 
   database
     .ref(
-      'School/Amaatra School/Details/' +
+      'School/'+school +'/Details/' +
         encid +
         '/tests/' +
         (today.getFullYear() +

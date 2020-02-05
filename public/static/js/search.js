@@ -167,7 +167,7 @@ async function getData() {
   console.log('year: ' + year + ' month: ' + month);
   if (year != '' && month == '') {
     details = await database
-      .ref(`School/Amaatra School/dates/${year}`)
+      .ref(`School/${school}/dates/${year}`)
       .once('value', () => {});
     var tb = document.getElementById('table');
     tb.style.height = '450px';
@@ -208,7 +208,7 @@ async function getData() {
     month = '';
   } else if (year != '' && month != '') {
     details = await database
-      .ref(`School/Amaatra School/dates/${year}/${month}`)
+      .ref(`School/${school}/dates/${year}/${month}`)
       .once('value', () => {});
     var tb = document.getElementById('table');
     tb.style.height = '450px';
@@ -257,7 +257,7 @@ async function setDetails(entry) {
   var database = firebase.database();
   var encid = encrypt(val, entry, key, iv);
   var details = await database
-    .ref(`School/Amaatra School/All Names/${encid}`)
+    .ref(`School/${school}/All Names/${encid}`)
     .once('value', () => {}, err);
   console.log(details.val());
   if (details.val() != true) {
@@ -335,7 +335,7 @@ async function showReport(e) {
 
   var database = firebase.database();
   var testdata = await database
-    .ref('School/Amaatra School/Details/' + encrypt(val, e, key, iv) + '/tests')
+    .ref('School/'+school+'/Details/' + encrypt(val, e, key, iv) + '/tests')
     .once('value', () => {});
   var keys = Object.keys(testdata.val());
   testdata = testdata.val();

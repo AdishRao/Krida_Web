@@ -7,11 +7,12 @@ var unique_id;
 var val = 1; //Data to be encryted
 var hasheduser;
 var today;
+var userAuthId;
 var key;
 var iv;
 var age;
 var rpm_age;
-
+var school;
 var bst_age;
 var gdt_age;
 var vl_age;
@@ -92,11 +93,21 @@ function login(e) {
     .then(function(firebaseUser) {
       document.getElementById('change_ui').innerHTML = '';
       key = keygen(password, 'aa', 16);
-      console.log(key);
+      //console.log(key);
       iv = keygen(password, 'aa', 8);
-      console.log(iv);
+      //console.log(iv);
+    hasheddb
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(function(firebaseUser) {
+      document.getElementById('change_ui').innerHTML = '';
+    })
+    .catch(function(error) {
+      alert('Wrong Email or Password');
+    });
       load_options();
     })
+
     .catch(function(error) {
       alert('Wrong Email or Password');
     });
@@ -167,11 +178,34 @@ function redefvars() {
   vl_social_quotient = 0;
 }
 
-function load_options() {
+async function load_options() {
+  database = firebase.database();
+  const userid = await firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      userAuthId = user.uid;
+    } else {
+      console.error('not logged in');
+    }
+
+  });
+
+  const userid2 = await hasheddb.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      userAuthId2 = user.uid;
+    } else {
+      console.error('not logged in');
+    }
+
+  });
+
+  await database.ref(`/user/${userAuthId}`).once('value', function(data) {
+    school = data.val().node;
+    val = data.val().encry;
+  });
+
   var page_content;
   //REINITIALIZING ALL VARIABLES
   redefvars();
-
   document.body.style.backgroundColor = 'white';
   page_content = `
   <nav class=" teal darken-1" role="navigation">
@@ -250,28 +284,6 @@ function add_student(e) {
     M.toast({ html: 'Age should be between 6 and 9!' });
   }
 
-  // Encrypt
-
-  // Decrypt
-  //
-  // var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-
-  // bcrypt.hash(unique_id, rounds, (err, hash) => {
-  //   if (err) {
-  //     console.error(err)
-  //     return
-  //   }
-  //   hasheddatabase.ref('Details/' + hash).set({
-  //     Name: name,
-  //     Age: age,
-  //     DOB: dob
-  //   });
-  //   hasheddatabase.ref('Details/' + hash).set({
-  //     Name: name,
-  //     Age: age,
-  //     DOB: dob
-  //   });
-  // })
 
   if (temp != 1) {
     rpm_age = age;
@@ -284,23 +296,23 @@ function add_student(e) {
     initial_vl_value = -1;
 
     unique_id = name + ':' + year + '-' + month + '-' + date;
-    database = firebase.database();
+
     hasheddatabase = hasheddb.database();
     hasheduser = CryptoJS.SHA256(unique_id);
     hasheduser = hasheduser.toString();
 
-    hasheddatabase.ref('Details/' + hasheduser).set({
+    hasheddatabase.ref('School/' + school + '/' +  hasheduser).set({
       DOB: dob
     });
 
     var encid = encrypt(val, unique_id, key, iv);
 
-    database.ref('School/Amaatra School/Details/' + encid).set({
+    database.ref('School/' + school + '/Details/' + encid).set({
       Age: age
     });
     database
       .ref(
-        'School/Amaatra School/dates/' +
+        'School/' + school + '/dates/' +
           today.getFullYear() +
           '/' +
           (today.getMonth() + 1)
@@ -308,7 +320,7 @@ function add_student(e) {
       .update(JSON.parse(`{ "${encid}": true }`));
 
     database
-      .ref('School/Amaatra School/All Names/')
+      .ref('School/' + school + '/All Names/')
       .update(JSON.parse(`{ "${encid}": true }`));
 
     option_loadpage();
@@ -402,20 +414,20 @@ function add_existing_studInfo(e) {
   database = firebase.database();
   0;
   hasheddatabase = hasheddb.database();
-  var ref = database.ref('School/Amaatra School/Details');
+  var ref = database.ref('School/'+ school +'/Details');
   ref.once('value').then(function(snapshot) {
     var b = snapshot.child(encid).exists(); // true
     if (b == true) {
       //updating age
       var updates = {};
-      updates['School/Amaatra School/Details/' + encid + '/Age'] = age;
+      updates['School/'+ school + '/Details/' + encid + '/Age'] = age;
 
       database.ref().update(updates);
-      hasheddatabase.ref().update(hashedupdates);
+      // hasheddatabase.ref().update(hashedupdates);
 
       database
         .ref(
-          'School/Amaatra School/dates/' +
+          'School/'+school+'/dates/' +
             today.getFullYear() +
             '/' +
             (today.getMonth() + 1)
