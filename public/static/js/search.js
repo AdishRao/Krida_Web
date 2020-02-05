@@ -13,7 +13,7 @@ function searchPage() {
 
     <ul class="sidenav nav-center sidenav-fixed invesible-top " id="mobile-nav">
       <li class="tooltipped" data-position="right" data-tooltip="Welcome">
-      <a style="border-radius: 36px; margin-top:8px; margin-right:10px; margin-left:10px; font-size:18px" class=" hoverable text-black center teal lighten-2  ">Amaatra</a>
+      <a style="border-radius: 36px; margin-top:8px; margin-right:10px; margin-left:10px; font-size:18px" class=" hoverable text-black center teal lighten-2  ">${display_text}</a>
       </li>
       <li><div class="divider"></div></li>
       <li><a href="#!" onClick="load_options()" ><i class="material-icons">add</i>New Student</a></li>

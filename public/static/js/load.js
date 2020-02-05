@@ -4,7 +4,7 @@ var initial_bst_value = -1,
   initial_vl_value = -1;
 var database;
 var unique_id;
-var val = 1; //Data to be encryted
+var val; //Data to be encryted
 var hasheduser;
 var today;
 var userAuthId;
@@ -16,6 +16,7 @@ var school;
 var bst_age;
 var gdt_age;
 var vl_age;
+var display_text;
 
 window.onload = login_option();
 var submit = document.getElementById('submit');
@@ -125,7 +126,7 @@ function contact() {
         </div>
       </nav>
       <ul class="sidenav nav-center sidenav-fixed invesible-top " id="mobile-nav">
-        <li class="tooltipped" data-position="right" data-tooltip="Welcome"><a style="border-radius: 36px; margin-top:8px; margin-right:10px; margin-left:10px; font-size:18px" class="hoverable text-black center teal lighten-2  ">Amaatra</a></li>
+        <li class="tooltipped" data-position="right" data-tooltip="Welcome"><a style="border-radius: 36px; margin-top:8px; margin-right:10px; margin-left:10px; font-size:18px" class="hoverable text-black center teal lighten-2  ">${display_text}</a></li>
         <li><div class="divider"></div></li>
         <li><a href="#!" onClick="load_options()" ><i class="material-icons">add</i>New Student</a></li>
         <li><a href="#!" onClick="load_old()" ><i class="material-icons">people</i>Existing Student</a></li>
@@ -201,6 +202,7 @@ async function load_options() {
   await database.ref(`/user/${userAuthId}`).once('value', function(data) {
     school = data.val().node;
     val = data.val().encry;
+    display_text = school;
   });
 
   var page_content;
@@ -219,7 +221,7 @@ async function load_options() {
 
   <ul class="sidenav nav-center sidenav-fixed invesible-top " id="mobile-nav">
     <li class="tooltipped" data-position="right" data-tooltip="Welcome">
-    <a style="border-radius: 36px; margin-top:8px; margin-right:10px; margin-left:10px; font-size:18px" class="hoverable text-black center teal lighten-2  ">Amaatra</a>
+    <a style="border-radius: 36px; margin-top:8px; margin-right:10px; margin-left:10px; font-size:18px" class="hoverable text-black center teal lighten-2  ">${display_text}</a>
     </li>
     <li><div class="divider"></div></li>
     <li class="teal accent-4"><a href="#!" onClick="load_options()" ><i class="material-icons">add</i>New Student</a></li>
@@ -342,7 +344,7 @@ function load_old() {
 
 <ul class="sidenav nav-center sidenav-fixed invesible-top " id="mobile-nav">
   <li class="tooltipped" data-position="right" data-tooltip="Welcome">
-  <a style="border-radius: 36px; margin-top:8px; margin-right:10px; margin-left:10px; font-size:18px" class="hoverable text-black center teal lighten-2  ">Amaatra</a>
+  <a style="border-radius: 36px; margin-top:8px; margin-right:10px; margin-left:10px; font-size:18px" class="hoverable text-black center teal lighten-2  ">${display_text}</a>
   </li>
   <li><div class="divider"></div></li>
   <li><a onClick="load_options()" ><i class="material-icons">add</i>New Student</a></li>
