@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+    <title>Register</title>
+
+    <link rel="icon" href="./static/logo.png" />
+
+
+    <link
+
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+
+      rel="stylesheet"
+
+    />
+
+    <style>
+
+      tbody {
+
+        display: block;
+
+        padding-top: 0px;
+
+        height: 450px;
+
+        overflow: auto;
+
+      }
+
+      thead,
+
+      tbody tr {
+
+        margin: 0px;
+
+        display: table;
+
+        width: 100%;
+
+        table-layout: fixed;
+
+      }
+
+      thead {
+
+        width: calc(100% - 1em);
+
+      }
+
+      table {
+
+        margin-top: 0px;
+
+        width: 100%;
+
+      }
+
+      .tabs .tab a {
+
+        color: #00897b;
+
+      }
+
+      /*Black color to the text*/
+
+      .tabs .tab a:hover {
+
+        background-color: #e0f2f1;
+
+        color: #00897b;
+
+      }
+
+      /*Text color on hover*/
+
+      .tabs .tab a:focus,
+
+      .tabs .tab a:focus.active {
+
+        background-color: #e0f2f1;
+
+        outline: none;
+
+      }
+
+      .tabs .tab a:active {
+
+        background-color: #e0f2f1;
+
+        color: #00897b;
+
+      }
+
+      .tabs .tab a.active {
+
+        background-color: #e0f2f1;
+
+        color: #00897b;
+
+      }
+
+      .tabs .tab a.focus.active {
+
+        background-color: #e0f2f1;
+
+        color: #00897b;
+
+      }
+
+      /*Background and text color when a tab is active*/
+
+      .tabs .indicator {
+
+        background-color: #00897b;
+
+      }
+
+      /*Color of underline*/
+
+      .container {
+
+        margin: 0 auto;
+
+        max-width: 1280px;
+
+        width: 90%;
+
+      }
+
+      @media only screen and (min-width: 601px) {
+
+        .container {
+
+          width: 85%;
+
+        }
+
+      }
+
+      @media only screen and (min-width: 993px) {
+
+        .container {
+
+          width: 70%;
+
+        }
+
+      }
+
+      .sidenav {
+
+        top: 65px;
+
+        width: 280px;
+
+      }
+
+      .ofset {
+
+        padding-left: 280px;
+
+      }
+
+      @media only screen and (max-width: 992px) {
+
+        .ofset {
+
+          padding-left: 0px;
+
+        }
+
+      }
+
+      .navbar ul {
+
+        list-style-type: none;
+
+        margin: 0;
+
+        padding: 0;
+
+        overflow: hidden;
+
+        background-color: #444;
+
+      }
+
+      .navbar li {
+
+        float: left;
+
+        border-right: 1px solid rgb(231, 228, 228);
+
+      }
+
+      .navbar li:last-child {
+
+        border-right: none;
+
+      }
+
+      .navbar li a {
+
+        display: block;
+
+        color: white;
+
+        text-align: center;
+
+        padding: 14px 16px;
+
+        text-decoration: none;
+
+      }
+
+      .navbar li a:hover:not(.active) {
+
+        background-color: rgb(161, 158, 158);
+
+      }
+
+    </style>
+
+  </head>
+
+
+
+  <body>
+
+    <div id="change_ui"></div>
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script src="https://www.gstatic.com/firebasejs/6.6.2/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+
+    <script>
+
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDlel42jq4dtBmpJMp8_i9fy1Ms25EGCtw",
+        authDomain: "krida-db.firebaseapp.com",
+        databaseURL: "https://krida-db.firebaseio.com",
+        projectId: "krida-db",
+        storageBucket: "krida-db.appspot.com",
+        messagingSenderId: "688131472973",
+        appId: "1:688131472973:web:ec45ab22367ec6322a6604",
+        measurementId: "G-BWMS6G64HM"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+    </script>
+
+    <script>
+
+      // Your web app's Firebase configuration
+
+      var firebaseConfig2 = {
+
+        apiKey: 'AIzaSyCS2lxbM8uz172Ya9CBQaHPB3IvLf31amk',
+
+        authDomain: 'hashed-id.firebaseapp.com',
+
+        databaseURL: 'https://hashed-id.firebaseio.com',
+
+        projectId: 'hashed-id',
+
+        storageBucket: 'hashed-id.appspot.com',
+
+        messagingSenderId: '231744656398',
+
+        appId: '1:231744656398:web:31350684331d532e90d85f',
+
+        measurementId: 'G-FB5D3X90SB'
+
+      };
+
+      // Initialize Firebase
+
+      var hasheddb = firebase.initializeApp(firebaseConfig2, 'hasheddb');
+
+    </script>
+
+    <script>
+        window.onload = function() {
+            var change = document.getElementById('change_ui');
+            content = 
+            `
+            <form class="center" action="">
+                <input id='form_email' type='email' placeholder='email'>
+                <br>
+                <input id='form_password' type='password' placeholder='password'>
+                <br>
+                <input id='name' placeholder='School/hospital name'>
+                <br>
+                <input type="checkbox" name='enc' id='enc_req' value='enc'> Encryption
+                <br>
+                <input type="checkbox" name='conf' id='conf_req' value='conf'> Confirmation
+                <br>
+                <input type='button' onClick ='createUser()' value='SUBMIT' class="btn-large waves-effect waves-light btn-small teal lighten-2"/>
+            </form>
+            `;
+            change.innerHTML = content;
+        }
+        function createUser()
+        {
+            enc = 0;
+            conf = 0;
+            email = document.getElementById('form_email').value;
+            password = document.getElementById('form_password').value;
+            name = document.getElementById('name').value;
+            if (document.getElementById('enc_req').checked)
+            {
+              enc=1;
+            }
+            if (document.getElementById('conf_req').checked)
+            {
+              conf=1;
+            }
+            firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
+                var user = firebase.auth().currentUser;
+                user.sendEmailVerification().then(function() {
+                alert('Email Sent');
+                database = firebase.database();
+                userAuthId = user.uid;
+                database.ref("user/" + userAuthId).set({
+                  "confirmation": conf,
+                  "encry": enc,
+                  "logedin": 1,
+                  "node":name
+                });
+                }).catch(function(error) {
+                // An error happened.
+                });
+            }).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // ...
+            });
+
+            alert('Success Encry');
+
+            hasheddb.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // ...
+            });
+            
+            alert('Success Hashed');
+            document.getElementById('form_email').innerHTML = '';
+            document.getElementById('form_password').innerHTML = '';
+        }
+    </script>
+
+  </body>
+
+</html>
