@@ -164,18 +164,18 @@ function vl_calc_res(id) {
   vl_current_age_question_set = vlResponse.vl_current_age_question_set;
   vl_res = vlResponse.vl_res;
   vl_no_of_wrong = vlResponse.vl_no_of_wrong;
-  flag = vlResponse.flag;
+  flag = (vlResponse.flag === 'true');
   j = vlResponse.j;
   vl_last_correct_ques = vlResponse.vl_last_correct_ques;
-  console.log('flag'+flag);
+  
   if (vl_current_age_question_set < 13) {
-    if (flag == true) {
+    if (flag === true) {
       vl_display();
     }
   }
-  console.log('flag'+flag);
-  if (flag == 'false' || vl_current_age_question_set >= 13) {
-    console.log("Entry");
+  
+  if (flag === false || vl_current_age_question_set >= 13) {
+    console.log("Entry to second if");
     // xhttp request
     vlResponse = RequestJSON("getVlSocialQuotient", `vl_ques_range=${vl_ques_range}&vl_current_age_question_set=${vl_current_age_question_set}&vl_no_of_wrong=${vl_no_of_wrong}&vl_last_correct_ques=${vl_last_correct_ques}&vl_social_quotient=${vl_social_quotient}&vl_age=${vl_age}`);
 
