@@ -184,12 +184,10 @@ async function getData() {
         var td1 = document.createElement('td');
         var td2 = document.createElement('td');
         //   var td3 = document.createElement('td');
-        // console.log('---------------------------->\n');
-        // console.log(ss);
+        console.log('');
+        console.log(ss);
         ss = decrypt(val, ss, key, iv);
-        // console.log('---------------------------->\n');
-        // console.log(ss);
-        // console.log('---------------------------->\n');
+        console.log(ss);
 
         var split = ss.split(':');
         td1.appendChild(document.createTextNode(split[0]));
@@ -223,7 +221,6 @@ async function getData() {
     var keyw = Object.keys(details.val());
     // console.log("Keys: "+key);
     keyw.forEach(e => {
-      console.log('---------------------------->\n' + e);
       e = decrypt(val, e, key, iv);
       var tr = document.createElement('tr');
       var td1 = document.createElement('td');
@@ -314,7 +311,7 @@ async function showReport(e) {
   </nav>
 
         <h3 class="center" style="color: white;">Patient Report</h3>
-        <div class="container" style="background: white; border: 3px solid teal; padding: 0.5em 1em;">
+        <div class="container" style="background: white; padding: 0.5em 1em;">
             <div>
                 <h6>
                     <b>PATIENT NAME: </b>` +
@@ -324,24 +321,21 @@ async function showReport(e) {
             </div>            
         </div>
 
-        <div class="container" style="margin-top: 20px; border: 3px solid teal; background: white;">
-            <!-- <h5 style="padding: 0.5em 0.7em; margin: 0em">Test Scores</h5>
-            <div class="divider" style="height: 7px;"></div> -->
+        <div class="container" style="margin-top: 20px; background: white;">
+            <h5>Test Scores</h5>
+            <div class="divider" style="height: 7px;"></div>
             <table>
-            <thead style="width:100%; background-color: #B9E5E0;">
-                <tr style="padding: 0.2em 1.2em;">
+                <tr>
                     <th>Test Date</th>
                     <th>BST</th>
                     <th>GDT</th>
                     <th>RPM</th>
                     <th>Vineland</th>
-                </tr>
-                </thead>
-                <tbody>`;
+                </tr>`;
 
   var database = firebase.database();
   var testdata = await database
-    .ref('School/' + school + '/Details/' + encrypt(val, e, key, iv) + '/tests')
+    .ref('School/'+school+'/Details/' + encrypt(val, e, key, iv) + '/tests')
     .once('value', () => {});
   var keys = Object.keys(testdata.val());
   testdata = testdata.val();
@@ -366,20 +360,20 @@ async function showReport(e) {
     body +=
       `
   <tr>
-                    <td style="overflow: hidden;">` +
+                    <td>` +
       q +
       `</td>
-                    <td style="overflow: hidden;">` +
-      (testdata[q].bst == -1 ? "N/A" : testdata[q].bst) +
+                    <td>` +
+      (testdata[q].bst == -1 ? 'N/A' : testdata[q].bst) +
       `</td>
-                    <td style="overflow: hidden;">` +
-      (testdata[q].gdt == -1 ? "N/A" : testdata[q].gdt) +
+                    <td>` +
+      (testdata[q].gdt == -1 ? 'N/A' : testdata[q].gdt) +
       `</td>
-                    <td style="overflow: hidden;">` +
-      (testdata[q].rpm == -1 ? "N/A" : testdata[q].rpm) +
+                    <td>` +
+      (testdata[q].rpm == -1 ? 'N/A' : testdata[q].rpm) +
       `</td>
-                    <td style="overflow: hidden;">` +
-      (testdata[q].vineland == -1 ? "N/A" : testdata[q].vineland) +
+                    <td>` +
+      (testdata[q].vineland == -1 ? 'N/A' : testdata[q].vineland) +
       `</td>
                 </tr>
   `;
@@ -387,12 +381,11 @@ async function showReport(e) {
 
   body += `
  </tr>
- </tbody>
  </table>
 </div>
-<button id="new_child" class="btn-large waves-effect waves-light btn-small orange darken-2"  onClick="searchPage()" style="min-width:310px;margin-top:30px; font-size: 20px; display: block; margin-left: auto; margin-right: auto; background: #00897B !important">Back</button>
+<button id="new_child" class="btn-large waves-effect waves-light btn-small orange darken-2" onClick="searchPage()" style="min-width:310px;margin-top:30px; font-size: 20px; display: block; margin-left: auto; margin-right: auto;">Back</button>
 `;
 
-  // document.body.style.backgroundColor = '#AACAB8';
+  document.body.style.backgroundColor = '#AACAB8';
   document.getElementById('change_ui').innerHTML = body;
 }

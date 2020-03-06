@@ -60,11 +60,11 @@ function login_option() {
     </form>
     </div>
     `;
-  document.getElementById('change_ui').innerHTML = contents;
-  var submit = document.getElementById('submit');
-  submit.addEventListener('click', login);
-  var forgot = document.getElementById('forgot');
-  forgot.addEventListener('click', forgot_option);
+  document.getElementById("change_ui").innerHTML = contents;
+  var submit = document.getElementById("submit");
+  submit.addEventListener("click", login);
+  var forgot = document.getElementById("forgot");
+  forgot.addEventListener("click", forgot_option);
   // var elems = document.querySelectorAll('.sidenav');
   // var instances = M.Sidenav.init(elems, {});
   // var elems = document.querySelectorAll('.tooltipped');
@@ -107,10 +107,10 @@ function forgot_option(e) {
     </form>
     </div>
     `;
-  document.getElementById('change_ui').innerHTML = contents;
+  document.getElementById("change_ui").innerHTML = contents;
   document
-    .getElementById('forgot_submit')
-    .addEventListener('click', password_reset);
+    .getElementById("forgot_submit")
+    .addEventListener("click", password_reset);
   // var elems = document.querySelectorAll('.sidenav');
   // var instances = M.Sidenav.init(elems, {});
   // var elems = document.querySelectorAll('.tooltipped');
@@ -118,37 +118,40 @@ function forgot_option(e) {
 }
 
 async function password_reset(e) {
-  var email = document.getElementById('forgot_email_id').value;
+  var email = document.getElementById("forgot_email_id").value;
   try {
     await firebase.auth().sendPasswordResetEmail(email);
-    document.getElementById('input-container').style.display = 'none';
+    document.getElementById("input-container").style.display = "none";
     document.getElementsByTagName(
-      'p'
+      "p"
     ).innerHTML = `A password link has been sent to ${email}`;
-    document.getElementById('forgot_submit').innerHTML = 'Go To Login';
+    document.getElementById("forgot_submit").innerHTML = "Go To Login";
     document
-      .getElementById('forgot_submit')
-      .addEventListener('click', e => login_option());
+      .getElementById("forgot_submit")
+      .addEventListener("click", e => login_option());
   } catch (err) {
-    if (err.code == 'auth/user-not-found') {
-      alert('User Not Found');
+    if (err.code == "auth/user-not-found") {
+      alert("User Not Found");
     }
   }
 }
 
+/////////////////////////////////
+
+////////////////////////////////
 function login(e) {
   e.preventDefault();
-  var email = document.getElementById('email_id').value;
-  var password = document.getElementById('password').value;
+  var email = document.getElementById("email_id").value;
+  var password = document.getElementById("password").value;
 
   firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(function(firebaseUser) {
-      document.getElementById('change_ui').innerHTML = '';
-      key = keygen(password, 'aa', 16);
+      document.getElementById("change_ui").innerHTML = "";
+      key = keygen(password, "aa", 16);
       //console.log(key);
-      iv = keygen(password, 'aa', 8);
+      iv = keygen(password, "aa", 8);
       //console.log(iv);
       hasheddb
         .auth()
@@ -157,11 +160,11 @@ function login(e) {
           load_options();
         })
         .catch(function(error) {
-          alert('Wrong Email or Password');
+          alert("Wrong Email or Password");
         });
     })
     .catch(function(error) {
-      alert('Wrong Email or Password');
+      alert("Wrong Email or Password");
     });
 }
 
@@ -194,8 +197,8 @@ function contact() {
         <a href="mailto:vincere-solutions@gmail.com" class="center btn-large waves-effect waves-light btn-small teal lighten-2">Send us an email</a>
       </div>
       `;
-  document.getElementById('change_ui').innerHTML = cntct_content;
-  var elems = document.querySelectorAll('.tooltipped');
+  document.getElementById("change_ui").innerHTML = cntct_content;
+  var elems = document.querySelectorAll(".tooltipped");
   M.Tooltip.init(elems, {});
 }
 
@@ -236,20 +239,19 @@ async function load_options() {
     if (user) {
       userAuthId = user.uid;
     } else {
-      console.error('not logged in');
+      console.error("not logged in");
     }
   });
 
-  //---Hashed DB
-  // const userid2 = await hasheddb.auth().onAuthStateChanged(function(user) {
-  //   if (user) {
-  //     userAuthId2 = user.uid;
-  //   } else {
-  //     console.error("not logged in");
-  //   }
-  // });
+  const userid2 = await hasheddb.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      userAuthId2 = user.uid;
+    } else {
+      console.error("not logged in");
+    }
+  });
 
-  await database.ref(`/user/${userAuthId}`).once('value', function(data) {
+  await database.ref(`/user/${userAuthId}`).once("value", function(data) {
     school = data.val().node;
     val = data.val().encry;
     confirmation = data.val().confirmation;
@@ -259,7 +261,7 @@ async function load_options() {
   var page_content;
   //REINITIALIZING ALL VARIABLES
   redefvars();
-  document.body.style.backgroundColor = 'white';
+  document.body.style.backgroundColor = "white";
   page_content = `
   <nav class=" teal darken-1" role="navigation">
     <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -294,22 +296,22 @@ async function load_options() {
     </form>
   </div>
     `;
-  document.body.style.backgroundColor = 'white';
-  document.getElementById('change_ui').innerHTML = page_content;
-  new_student = document.getElementById('new_student');
-  new_student.addEventListener('click', add_student);
-  var elems = document.querySelectorAll('.tooltipped');
+  document.body.style.backgroundColor = "white";
+  document.getElementById("change_ui").innerHTML = page_content;
+  new_student = document.getElementById("new_student");
+  new_student.addEventListener("click", add_student);
+  var elems = document.querySelectorAll(".tooltipped");
   M.Tooltip.init(elems, {});
 }
 
 function add_student(e) {
   e.preventDefault();
   var temp = 0;
-  var name = document.getElementById('Name').value;
-  var gender = document.getElementById('Gender').value;
-  var dob = document.getElementById('DOB').value;
-  var dob = dob.replace(/\//g, '-');
-  var dob_split = dob.split('-');
+  var name = document.getElementById("Name").value;
+  var gender = document.getElementById("Gender").value;
+  var dob = document.getElementById("DOB").value;
+  var dob = dob.replace(/\//g, "-");
+  var dob_split = dob.split("-");
   // age = document.getElementById("Age").value;
   today = new Date();
   console.log(today);
@@ -334,7 +336,7 @@ function add_student(e) {
 
   if (age > 9 || age < 6) {
     temp = 1;
-    M.toast({ html: 'Age should be between 6 and 9!' });
+    M.toast({ html: "Age should be between 6 and 9!" });
   }
 
   if (temp != 1) {
@@ -347,41 +349,34 @@ function add_student(e) {
     initial_gdt_value = -1;
     initial_vl_value = -1;
 
-    unique_id = name + ':' + year + '-' + month + '-' + date;
+    unique_id = name + ":" + year + "-" + month + "-" + date;
 
     hasheddatabase = hasheddb.database();
     hasheduser = CryptoJS.SHA256(unique_id);
     hasheduser = hasheduser.toString();
 
-    hasheddatabase.ref('' + hasheduser).set({
-      DOB: dob,
-      Gender: gender
+    hasheddatabase.ref("School/" + school + "/" + hasheduser).set({
+      DOB: dob
     });
 
     var encid = encrypt(val, unique_id, key, iv);
-    var enc_age = encrypt(val, age.toString(), key, iv);
-    var enc_dob = encrypt(val, dob.toString(), key, iv);
-    var enc_gen = encrypt(val, gender.toString(), key, iv);
 
-    database.ref('School/' + school + '/Details/' + encid).update({
-      Age: enc_age,
-      DOB: enc_dob,
-      Gender: enc_gen
+    database.ref("School/" + school + "/Details/" + encid).set({
+      Age: age
     });
-
     database
       .ref(
-        'School/' +
+        "School/" +
           school +
-          '/dates/' +
+          "/dates/" +
           today.getFullYear() +
-          '/' +
+          "/" +
           (today.getMonth() + 1)
       )
       .update(JSON.parse(`{ "${encid}": true }`));
 
     database
-      .ref('School/' + school + '/All Names/')
+      .ref("School/" + school + "/All Names/")
       .update(JSON.parse(`{ "${encid}": true }`));
 
     option_loadpage();
@@ -427,19 +422,19 @@ function load_old() {
     </div>
     </div>
     `;
-  document.getElementById('change_ui').innerHTML = page_content;
-  existing_student = document.getElementById('existing_student');
-  existing_student.addEventListener('click', add_existing_studInfo);
-  var elems = document.querySelectorAll('.tooltipped');
+  document.getElementById("change_ui").innerHTML = page_content;
+  existing_student = document.getElementById("existing_student");
+  existing_student.addEventListener("click", add_existing_studInfo);
+  var elems = document.querySelectorAll(".tooltipped");
   M.Tooltip.init(elems, {});
 }
 
 function add_existing_studInfo(e) {
   e.preventDefault();
-  var name = document.getElementById('Name').value;
-  var dob = document.getElementById('DOB').value;
-  var dob = dob.replace(/\//g, '-');
-  var dob_split = dob.split('-');
+  var name = document.getElementById("Name").value;
+  var dob = document.getElementById("DOB").value;
+  var dob = dob.replace(/\//g, "-");
+  var dob_split = dob.split("-");
   today = new Date();
   console.log(today);
   console.log(dob_split);
@@ -470,32 +465,29 @@ function add_existing_studInfo(e) {
   initial_gdt_value = -1;
   initial_vl_value = -1;
 
-  unique_id = name + ':' + year + '-' + month + '-' + date;
+  unique_id = name + ":" + year + "-" + month + "-" + date;
   var encid = encrypt(val, unique_id, key, iv);
   database = firebase.database();
   0;
   hasheddatabase = hasheddb.database();
-  var ref = database.ref('School/' + school + '/Details');
-  ref.once('value').then(function(snapshot) {
+  var ref = database.ref("School/" + school + "/Details");
+  ref.once("value").then(function(snapshot) {
     var b = snapshot.child(encid).exists(); // true
     if (b == true) {
       //updating age
       var updates = {};
-      updates['School/' + school + '/Details/' + encid + '/Age'] = encrypt(
-        val,
-        age.toString(),
-        key,
-        iv
-      );
+      updates["School/" + school + "/Details/" + encid + "/Age"] = age;
+
       database.ref().update(updates);
+      // hasheddatabase.ref().update(hashedupdates);
 
       database
         .ref(
-          'School/' +
+          "School/" +
             school +
-            '/dates/' +
+            "/dates/" +
             today.getFullYear() +
-            '/' +
+            "/" +
             (today.getMonth() + 1)
         )
         .update(JSON.parse(`{ "${encid}": true }`));
