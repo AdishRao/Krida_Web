@@ -175,7 +175,6 @@ function vl_calc_res(id) {
   }
   
   if (flag === false || vl_current_age_question_set >= 13) {
-    console.log("Entry to second if");
     // xhttp request
     vlResponse = RequestJSON("getVlSocialQuotient", `vl_ques_range=${vl_ques_range}&vl_current_age_question_set=${vl_current_age_question_set}&vl_no_of_wrong=${vl_no_of_wrong}&vl_last_correct_ques=${vl_last_correct_ques}&vl_social_quotient=${vl_social_quotient}&vl_age=${vl_age}`);
 
@@ -189,7 +188,7 @@ function vl_calc_res(id) {
     vl_age = vlResponse.vl_age;
   
     initial_vl_value = vl_social_quotient;
-    console.log("Going to store to DB");
+    
     hasheddatabase
       .ref(
         ''+
@@ -220,7 +219,7 @@ function vl_calc_res(id) {
       .update({
         vineland: encrypt(val, vl_social_quotient.toString(), key, iv)
       });
-    console.log("DB store finished");
-    option_loadpage();
+    
+      option_loadpage();
   }
 }
