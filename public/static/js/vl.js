@@ -168,7 +168,7 @@ async function vl_calc_res(id) {
   vl_last_correct_ques = getVlCalcResponse.vl_last_correct_ques;
   
   if (vl_current_age_question_set < 13) {
-    if (flag === true) {
+    if (flag == true) {
       vl_display();
     }
   }
