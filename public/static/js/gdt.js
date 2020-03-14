@@ -97,9 +97,8 @@ function gdt_set_result_image(click_id) {
 }
 async function gdt_finish() {
   
-  // xhttp request
-  gdt_count = Number(RequestText("getGdtFinish", `gdt_agegroup=${gdt_agegroup}&gdt_age=${gdt_age}&gdt_count_holder=${gdt_count_holder}&gdt_wrong_count=${gdt_wrong_count}&gdt_count=${gdt_count}`));
-  
+  gdt_count = await invokeCloudFunction("getGdtFinish", `gdt_agegroup=${gdt_agegroup}&gdt_age=${gdt_age}&gdt_count_holder=${gdt_count_holder}&gdt_wrong_count=${gdt_wrong_count}&gdt_count=${gdt_count}`);
+
   window.scrollTo(0, 0);
   var encid = encrypt(val, unique_id, key, iv);
   if (gdt_count == 0) {
