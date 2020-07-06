@@ -135,23 +135,23 @@ exports.getGdtFinish = functions.https.onRequest((request, response) => {
 exports.getRpmScore = functions.https.onRequest((request, response) => {
     response.set('Access-control-Allow-Origin', '*');
     
-    console.log("query: ", request.query);
+    //console.log("query: ", request.query);
     
     var rpm_result = request.query.rpm_result.split(',').map(Number);
     var rpm_section_no = Number(request.query.rpm_section_no);
     var rpm_score = Number(request.query.rpm_score);
 
-    // console.log("rpm_result", rpm_result);
-    // console.log("rpm_answers", rpm_answers);
-    // console.log("rpm_section_no", rpm_section_no);
-    // console.log("rpm_score", rpm_score);
+    /*console.log("rpm_result", rpm_result);
+    console.log("rpm_answers", rpm_answers);
+    console.log("rpm_section_no", rpm_section_no);
+    console.log("rpm_score", rpm_score);*/
 
     for (var i = 0; i < 12; i++) {
         if (rpm_result[i] === rpm_answers[rpm_section_no][i]) {
           rpm_score += 1;
         }
       }
-    console.log("rpm_score", rpm_score);    
+    //console.log("rpm_score", rpm_score);    
 
     response.send(rpm_score.toString());
 });
@@ -165,19 +165,18 @@ exports.getVlCalcRes = functions.https.onRequest((request, response) => {
   var vl_current_age_question_set = Number(request.query.vl_current_age_question_set);
   var vl_res = request.query.vl_res.split(',').map(Number);
   var vl_no_of_wrong = Number(request.query.vl_no_of_wrong);
-  var flag = (request.query.flag === "true");
+  var flag = request.query.flag;
   var j = Number(request.query.j);
   var vl_last_correct_ques = Number(request.query.vl_last_correct_ques);
 
 
-  // console.log("vl_ques_range", vl_ques_range);
-  // console.log("vl_current_age_question_set", vl_current_age_question_set);
-  // console.log("vl_res", vl_res);
-  // console.log("vl_no_of_wrong", vl_no_of_wrong);
-  // console.log("flag", flag);
-  // console.log("j", j);
-  // console.log("vl_last_correct_ques", vl_last_correct_ques);
-
+  /*console.log("vl_ques_range", vl_ques_range);
+  console.log("vl_current_age_question_set", vl_current_age_question_set);
+  console.log("vl_res", vl_res);
+  console.log("vl_no_of_wrong", vl_no_of_wrong);
+  console.log("flag", flag);
+  console.log("j", j);
+  console.log("vl_last_correct_ques", vl_last_correct_ques);*/
 
   // BUSINESS LOGIC
   for (

@@ -70,24 +70,26 @@ function bst_set_result(clicked_id) {
       'btn waves-effect waves-light btn-small orange darken-2';
   }
 }
-async function bst_calc_res(clicked_id) {
+function bst_calc_res(clicked_id) {
   window.scrollTo(0, 0);
 
-  let getBstFlagResponse = await invokeCloudFunction("getBstFlag", `bst_question_count=${bst_question_count}&bst_temp_res=${bst_temp_res}`);
+  // xhttp request
+  bstResponse = RequestJSON("getBstFlag", `bst_question_count=${bst_question_count}&bst_temp_res=${bst_temp_res}`);
 
-  flag = getBstFlagResponse.flag;
-  all_correct = getBstFlagResponse.all_correct;
+  flag = bstResponse.flag;
+  all_correct = bstResponse.all_correct;
 
   if (flag == false || bst_question_count == 7) {
     bst_display_result();
   } else {
 
-    let getBstCalcRes = await invokeCloudFunction("getBstCalcRes", `all_correct=${all_correct}&bst_question_count=${bst_question_count}&bst_temp_res=${bst_temp_res}&bst_basal_age=${bst_basal_age}&bst_additive_age=${bst_additive_age}`);
+    // xhttp request
+    bstResponse = RequestJSON("getBstCalcRes", `all_correct=${all_correct}&bst_question_count=${bst_question_count}&bst_temp_res=${bst_temp_res}&bst_basal_age=${bst_basal_age}&bst_additive_age=${bst_additive_age}`);
 
-    all_correct = getBstCalcRes.all_correct;
-    bst_question_count = getBstCalcRes.bst_question_count;
-    bst_basal_age = getBstCalcRes.bst_basal_age;
-    bst_additive_age = getBstCalcRes.bst_additive_age;
+    all_correct = bstResponse.all_correct;
+    bst_question_count = bstResponse.bst_question_count;
+    bst_basal_age = bstResponse.bst_basal_age;
+    bst_additive_age = bstResponse.bst_additive_age;
     
     bst_disp_questions();
   }
@@ -95,14 +97,15 @@ async function bst_calc_res(clicked_id) {
 
 //Is this function even used?  -_-
 
-async function bst_display_result() {
+function bst_display_result() {
 
-  let getBstFinalResultResponse = await invokeCloudFunction("getBstFinalResult", `bst_additive_age=${bst_additive_age}&bst_basal_age=${bst_basal_age}&bst_age=${bst_age}`);
+  // xhttp request
+  bstResponse = RequestJSON("getBstFinalResult", `bst_additive_age=${bst_additive_age}&bst_basal_age=${bst_basal_age}&bst_age=${bst_age}`);
 
-  bst_basal_age = getBstFinalResultResponse.bst_basal_age;
-  bst_additive_age = getBstFinalResultResponse.bst_additive_age;
-  bst_age = getBstFinalResultResponse.bst_age;
-  bst_final_result = getBstFinalResultResponse.bst_final_result;
+  bst_basal_age = bstResponse.bst_basal_age;
+  bst_additive_age = bstResponse.bst_additive_age;
+  bst_age = bstResponse.bst_age;
+  bst_final_result = bstResponse.bst_final_result;
   
   initial_bst_value = bst_final_result;
 

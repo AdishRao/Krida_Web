@@ -151,40 +151,42 @@ function vl_set_result(clicked_id) {
   }
 }
 
-async function vl_calc_res(id) {
+function vl_calc_res(id) {
   window.scrollTo(0, 0);
 
   var j = vl_ques_range[vl_current_age_question_set];
   var flag = false;
 
-  let getVlCalcResponse = await invokeCloudFunction("getVlCalcRes", `vl_ques_range=${vl_ques_range}&vl_current_age_question_set=${vl_current_age_question_set}&vl_res=${vl_res}&vl_no_of_wrong=${vl_no_of_wrong}&flag=${flag}&j=${j}&vl_last_correct_ques=${vl_last_correct_ques}`);
-  
-  vl_ques_range = getVlCalcResponse.vl_ques_range;
-  vl_current_age_question_set = getVlCalcResponse.vl_current_age_question_set;
-  vl_res = getVlCalcResponse.vl_res;
-  vl_no_of_wrong = getVlCalcResponse.vl_no_of_wrong;
-  flag = getVlCalcResponse.flag;
-  j = getVlCalcResponse.j;
-  vl_last_correct_ques = getVlCalcResponse.vl_last_correct_ques;
-  
+  // xhttp request
+  vlResponse = RequestJSON("getVlCalcRes", `vl_ques_range=${vl_ques_range}&vl_current_age_question_set=${vl_current_age_question_set}&vl_res=${vl_res}&vl_no_of_wrong=${vl_no_of_wrong}&flag=${flag}&j=${j}&vl_last_correct_ques=${vl_last_correct_ques}`);
+
+  vl_ques_range = vlResponse.vl_ques_range;
+  vl_current_age_question_set = vlResponse.vl_current_age_question_set;
+  vl_res = vlResponse.vl_res;
+  vl_no_of_wrong = vlResponse.vl_no_of_wrong;
+  flag = (vlResponse.flag==true);
+  j = vlResponse.j;
+  vl_last_correct_ques = vlResponse.vl_last_correct_ques;
+
+  console.log(typeof(flag));
   if (vl_current_age_question_set < 13) {
     if (flag == true) {
       vl_display();
     }
   }
   
-  if (flag === false || vl_current_age_question_set >= 13) {
-    
-    let getVlSocialQuotientResponse = await invokeCloudFunction("getVlSocialQuotient", `vl_ques_range=${vl_ques_range}&vl_current_age_question_set=${vl_current_age_question_set}&vl_no_of_wrong=${vl_no_of_wrong}&vl_last_correct_ques=${vl_last_correct_ques}&vl_social_quotient=${vl_social_quotient}&vl_age=${vl_age}`);
+  if (flag == false || vl_current_age_question_set >= 13) {
+    // xhttp request
+    vlResponse = RequestJSON("getVlSocialQuotient", `vl_ques_range=${vl_ques_range}&vl_current_age_question_set=${vl_current_age_question_set}&vl_no_of_wrong=${vl_no_of_wrong}&vl_last_correct_ques=${vl_last_correct_ques}&vl_social_quotient=${vl_social_quotient}&vl_age=${vl_age}`);
 
-    vl_ques_range = getVlSocialQuotientResponse.vl_ques_range;
-    vl_current_age_question_set = getVlSocialQuotientResponse.vl_current_age_question_set;
-    vl_no_of_wrong = getVlSocialQuotientResponse.vl_no_of_wrong;
-    vl_last_correct_ques = getVlSocialQuotientResponse.vl_last_correct_ques;
-    vl_final_score = getVlSocialQuotientResponse.vl_final_score;
-    vl_no_correct = getVlSocialQuotientResponse.vl_no_correct;
-    vl_social_quotient = getVlSocialQuotientResponse.vl_social_quotient;
-    vl_age = getVlSocialQuotientResponse.vl_age;
+    vl_ques_range = vlResponse.vl_ques_range;
+    vl_current_age_question_set = vlResponse.vl_current_age_question_set;
+    vl_no_of_wrong = vlResponse.vl_no_of_wrong;
+    vl_last_correct_ques = vlResponse.vl_last_correct_ques;
+    vl_final_score = vlResponse.vl_final_score;
+    vl_no_correct = vlResponse.vl_no_correct;
+    vl_social_quotient = vlResponse.vl_social_quotient;
+    vl_age = vlResponse.vl_age;
   
     initial_vl_value = vl_social_quotient;
   
