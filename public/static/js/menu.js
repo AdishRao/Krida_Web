@@ -49,7 +49,7 @@ function option_loadpage()
             <div class="row center">
                 <div class="col s4"></div>
                 <div class="col s4">
-                    <button id="new_child" class="btn-large waves-effect waves-light btn-small orange darken-2" onClick="confirm()" style="min-width:310px;margin-top:10px;">New Student</button>
+                    <button id="new_child" class="btn-large waves-effect waves-light btn-small orange darken-2" onClick="confirm()" style="min-width:310px;margin-top:10px;">HOME</button>
 
                 </div>
             </div>
@@ -73,7 +73,7 @@ function option_loadpage()
             <div class="row center">
                 <div class="col s4"></div>
                 <div class="col s4">
-                    <button id="new_child" class="btn-large waves-effect waves-light btn-small orange darken-2" onClick="load_options()" style="min-width:310px;margin-top:10px;">New Student</button>
+                    <button id="new_child" class="btn-large waves-effect waves-light btn-small orange darken-2" onClick="load_options()" style="min-width:310px;margin-top:10px;">HOME</button>
 
                 </div>
             </div>

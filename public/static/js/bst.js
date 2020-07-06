@@ -109,35 +109,38 @@ function bst_display_result() {
   
   initial_bst_value = bst_final_result;
 
-  hasheddatabase
-    .ref(
-      '' +
-        hasheduser +
-        '/tests/' +
-        (today.getFullYear() +
-          '-' +
-          (today.getMonth() + 1) +
-          '-' +
-          today.getDate())
-    )
-    .update({
-      bst: bst_final_result
-    });
-  var encid = encrypt(val, unique_id, key, iv);
-  database
-    .ref(
-      'School/'+school+'/Details/' +
-        encid +
-        '/tests/' +
-        (today.getFullYear() +
-          '-' +
-          (today.getMonth() + 1) +
-          '-' +
-          today.getDate())
-    )
-    .update({
-      bst: encrypt(val, bst_final_result.toString(), key, iv)
-    });
+  if(test_email!='test@gmail.com')
+  {
+    hasheddatabase
+      .ref(
+        '' +
+          hasheduser +
+          '/tests/' +
+          (today.getFullYear() +
+            '-' +
+            (today.getMonth() + 1) +
+            '-' +
+            today.getDate())
+      )
+      .update({
+        bst: bst_final_result
+      });
+    var encid = encrypt(val, unique_id, key, iv);
+    database
+      .ref(
+        'School/'+school+'/Details/' +
+          encid +
+          '/tests/' +
+          (today.getFullYear() +
+            '-' +
+            (today.getMonth() + 1) +
+            '-' +
+            today.getDate())
+      )
+      .update({
+        bst: encrypt(val, bst_final_result.toString(), key, iv)
+      });
+  }
   window.scrollTo(0, 0);
   option_loadpage();
 }

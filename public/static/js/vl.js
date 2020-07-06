@@ -189,38 +189,40 @@ function vl_calc_res(id) {
     vl_age = vlResponse.vl_age;
   
     initial_vl_value = vl_social_quotient;
-    
-    hasheddatabase
-      .ref(
-        ''+
-          hasheduser +
-          '/tests/' +
-          (today.getFullYear() +
-            '-' +
-            (today.getMonth() + 1) +
-            '-' +
-            today.getDate())
-      )
-      .update({
-        vineland: vl_social_quotient
-      });
+  
+    if(test_email!='test@gmail.com')
+    {
+      hasheddatabase
+        .ref(
+          ''+
+            hasheduser +
+            '/tests/' +
+            (today.getFullYear() +
+              '-' +
+              (today.getMonth() + 1) +
+              '-' +
+              today.getDate())
+        )
+        .update({
+          vineland: vl_social_quotient
+        });
 
-    var encid = encrypt(val, unique_id, key, iv);
-    database
-      .ref(
-        'School/'+school+'/Details/' +
-          encid +
-          '/tests/' +
-          (today.getFullYear() +
-            '-' +
-            (today.getMonth() + 1) +
-            '-' +
-            today.getDate())
-      )
-      .update({
-        vineland: encrypt(val, vl_social_quotient.toString(), key, iv)
-      });
-    
+      var encid = encrypt(val, unique_id, key, iv);
+      database
+        .ref(
+          'School/'+school+'/Details/' +
+            encid +
+            '/tests/' +
+            (today.getFullYear() +
+              '-' +
+              (today.getMonth() + 1) +
+              '-' +
+              today.getDate())
+        )
+        .update({
+          vineland: encrypt(val, vl_social_quotient.toString(), key, iv)
+        });
+    }
       option_loadpage();
   }
 }

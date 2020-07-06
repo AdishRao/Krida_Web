@@ -103,20 +103,23 @@ async function gdt_finish() {
   window.scrollTo(0, 0);
   var encid = encrypt(val, unique_id, key, iv);
   if (gdt_count == 0) {
-    database
-      .ref(
-        ''+ school + '/Details/' +
-          encid +
-          '/tests/' +
-          (today.getFullYear() +
-            '-' +
-            (today.getMonth() + 1) +
-            '-' +
-            today.getDate())
-      )
-      .update({
-        gdt: encrypt(val, gdt_count, key, iv)
-      });
+    if(test_email!='test@gmail.com')
+    {
+      database
+        .ref(
+          ''+ school + '/Details/' +
+            encid +
+            '/tests/' +
+            (today.getFullYear() +
+              '-' +
+              (today.getMonth() + 1) +
+              '-' +
+              today.getDate())
+        )
+        .update({
+          gdt: encrypt(val, gdt_count, key, iv)
+        });
+    }
     gdt_final_result = 0;
     option_loadpage();
   }
@@ -130,35 +133,38 @@ async function gdt_finish() {
     }
   });
 
-  hasheddatabase
-    .ref(
-      ''+
-        hasheduser +
-        '/tests/' +
-        (today.getFullYear() +
-          '-' +
-          (today.getMonth() + 1) +
-          '-' +
-          today.getDate())
-    )
-    .update({
-      gdt: gdt_final_result
-    });
+  if(test_email!='test@gmail.com')
+  {
+    hasheddatabase
+      .ref(
+        ''+
+          hasheduser +
+          '/tests/' +
+          (today.getFullYear() +
+            '-' +
+            (today.getMonth() + 1) +
+            '-' +
+            today.getDate())
+      )
+      .update({
+        gdt: gdt_final_result
+      });
 
-  database
-    .ref(
-      'School/'+school +'/Details/' +
-        encid +
-        '/tests/' +
-        (today.getFullYear() +
-          '-' +
-          (today.getMonth() + 1) +
-          '-' +
-          today.getDate())
-    )
-    .update({
-      gdt: encrypt(val, gdt_final_result, key, iv)
-    });
+    database
+      .ref(
+        'School/'+school +'/Details/' +
+          encid +
+          '/tests/' +
+          (today.getFullYear() +
+            '-' +
+            (today.getMonth() + 1) +
+            '-' +
+            today.getDate())
+      )
+      .update({
+        gdt: encrypt(val, gdt_final_result, key, iv)
+      });
+  }
   initial_gdt_value = gdt_final_result;
   option_loadpage();
 }

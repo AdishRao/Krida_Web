@@ -86,21 +86,24 @@ async function rpm_cal_final_res() {
   var encid = encrypt(val, unique_id, key, iv);
   window.scrollTo(0, 0);
   if (rpm_score == 0) {
-    database
-      .ref(
-        '' + school + '/Details/' +
-          encid +
-          '/tests/' +
-          (today.getFullYear() +
-            '-' +
-            (today.getMonth() + 1) +
-            '-' +
-            today.getDate())
-      )
-      .update({
-        rpm: encrypt(val, rpm_score.toString(), key, iv)
-      });
-    initial_rpm_value = 0;
+    if(test_email!='test@gmail.com')
+    {
+      database
+        .ref(
+          '' + school + '/Details/' +
+            encid +
+            '/tests/' +
+            (today.getFullYear() +
+              '-' +
+              (today.getMonth() + 1) +
+              '-' +
+              today.getDate())
+        )
+        .update({
+          rpm: encrypt(val, rpm_score.toString(), key, iv)
+        });
+      initial_rpm_value = 0;
+    }
     option_loadpage();
   }
   const rpm_q = await fetch('static/RPM/rpmresult.csv');
@@ -113,36 +116,38 @@ async function rpm_cal_final_res() {
     }
   });
   initial_rpm_value = rpm_final_result;
+  if(test_email!='test@gmail.com')
+  {
+    hasheddatabase
+      .ref(
+        ''+
+          hasheduser +
+          '/tests/' +
+          (today.getFullYear() +
+            '-' +
+            (today.getMonth() + 1) +
+            '-' +
+            today.getDate())
+      )
+      .update({
+        rpm: rpm_final_result
+      });
 
-  hasheddatabase
-    .ref(
-      ''+
-        hasheduser +
-        '/tests/' +
-        (today.getFullYear() +
-          '-' +
-          (today.getMonth() + 1) +
-          '-' +
-          today.getDate())
-    )
-    .update({
-      rpm: rpm_final_result
-    });
-
-  database
-    .ref(
-      'School/'+school +'/Details/' +
-        encid +
-        '/tests/' +
-        (today.getFullYear() +
-          '-' +
-          (today.getMonth() + 1) +
-          '-' +
-          today.getDate())
-    )
-    .update({
-      rpm: encrypt(val, rpm_final_result.toString(), key, iv)
-    });
+    database
+      .ref(
+        'School/'+school +'/Details/' +
+          encid +
+          '/tests/' +
+          (today.getFullYear() +
+            '-' +
+            (today.getMonth() + 1) +
+            '-' +
+            today.getDate())
+      )
+      .update({
+        rpm: encrypt(val, rpm_final_result.toString(), key, iv)
+      });
+  }
   option_loadpage();
 }
 
