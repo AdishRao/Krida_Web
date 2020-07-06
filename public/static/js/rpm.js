@@ -151,11 +151,10 @@ async function rpm_cal_final_res() {
   option_loadpage();
 }
 
-function rpm_calc_res(clicked_id) {
+async function rpm_calc_res(clicked_id) {
   
-  // xhttp request
-  rpm_score = Number(RequestText("getRpmScore", `rpm_result=${rpm_result}&rpm_answers=${rpm_answers}&rpm_section_no=${rpm_section_no}&rpm_score=${rpm_score}`));
-  
+  rpm_score  = await invokeCloudFunction("getRpmScore", `rpm_result=${rpm_result}&rpm_answers=${rpm_answers}&rpm_section_no=${rpm_section_no}&rpm_score=${rpm_score}`)
+
   rpm_result = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   window.scrollTo(0, 0);
   rpm_section_no += 1;
@@ -166,6 +165,7 @@ function rpm_calc_res(clicked_id) {
   } else {
     rpm_cal_final_res();
   }
+
 }
 
 function rpm_set_result(clicked_id) {
