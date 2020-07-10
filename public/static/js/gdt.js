@@ -6,7 +6,7 @@ var gdt_agegroup = [11, 13, 17, 20, 24];
 var gdt_final_result = 0;
 
 function gdt_load_ques() {
-  var gdt_content = '';
+  var gdt_content = '<h1 style="text-align:center;">Gessels Drawing Test</h1>';
   var gdt_inital_questions = [
     'Palmer hold on writing instruments?',
     'Spontaneous scribble?',

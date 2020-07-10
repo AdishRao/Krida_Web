@@ -12,7 +12,7 @@ var rpm_image_no = 1;
 var rpm_final_result = 0;
 
 function rpm_display_set_lower() {
-  var rpm_content = '';
+  var rpm_content = '<h1 style="text-align:center;">Ravens Progressive Matrix</h1>';
   for (var rpm_ques_num = 1; rpm_ques_num < 13; rpm_ques_num++) {
     rpm_content += `<div style="padding:30px 0px;" id="ques_seperator">
         <div id="ques${rpm_ques_num}" style="clear: both; padding: 15px 0px;" class="question">

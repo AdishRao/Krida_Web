@@ -105,7 +105,7 @@ async function vl_load_ques() {
 }
 
 function vl_display() {
-  var contents = '';
+  var contents = '<h1 style="text-align:center;">Vinelands Scale</h1>';
   vl_res = [];
   var j = 0;
   for (

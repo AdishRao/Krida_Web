@@ -22,7 +22,7 @@ async function bst_load_ques() {
 }
 function bst_disp_questions() {
   var bst_temp_questions = bst_questions[bst_question_count];
-  var bst_contents = '';
+  var bst_contents = '<h1 style="text-align:center;">Binnet Simons Test</h1>';
   bst_contents += `
         <div id = "bst_image" style="float:right;width:40%;margin-top:100px;"></div>
         <div id = "bst_questions" style="float:left;width:60%"></div>
