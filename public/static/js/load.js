@@ -337,6 +337,7 @@ async function load_options() {
             <input type="text" placeholder="Full Name" id="Name"/>\
             <input type="text" placeholder="Gender" id="Gender"/>\
             <input type="date" placeholder="DOB(DD/MM/YYYY) - Age [6-9]" id="DOB"/>\
+            <input type="file" id="Photo"/>\
             <input type="submit" id="new_student" class="btn-large waves-effect waves-light btn-small teal lighten-2"/>\
         </div></div>\
     </form>
@@ -396,6 +397,8 @@ function add_student(e) {
     initial_vl_value = -1;
 
     unique_id = name + ':' + year + '-' + month + '-' + date;
+
+    var photo = document.getElementById("Photo").value;
 
   //TODO: Remove guest login
   if(test_email!='test@gmail.com')

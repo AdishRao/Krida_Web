@@ -313,11 +313,12 @@ async function showReport(e) {
     </div>
   </nav>
 
+  <img src="" alt="" width="80px" height="50px" style="background:black;">
         <h3 class="center" style="color: white;">Patient Report</h3>
         <div class="container" style="background: white; border: 3px solid teal; padding: 0.5em 1em;">
             <div>
                 <h6>
-                    <b>PATIENT NAME: </b>` +
+                    <b>NAME: </b>` +
     e.split(":")[0] +
     `
                 </h6>

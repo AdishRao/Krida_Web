@@ -1,7 +1,9 @@
 function result_loadpage()
 {   
     var contents = 
-    `
+    `<div style='background-color:black; width:50px; height:100px;'>
+        <img src="" alt="" width="" height="">
+    </div>
     <div style='margin-top:8%;padding:0px 10px;'>
         <table id='add_result' style="border: 5px solid teal;">
         </table>
