@@ -1,41 +1,63 @@
 function option_loadpage()
 {
-    var contents =
+    //const storageRef = firebase.storage().ref();
+    storageRef.getDownloadURL().then((url) => {
+        var img = document.getElementById('myimg');
+        img.setAttribute('src', url);
+    })
+    .catch((error) => {
+        console.log("image not retrieved");
+        console.log(error);
+    });
+
+    var contents = 
     `
     <nav class=" teal darken-1" role="navigation">
-    <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    <ul>
-      <li style="float:right"><a href="https://www.vincere-solutions.com/krida" target="_blank">About</a></li>
-    </ul>  
-    <div class="nav-wrapper container">
-        <a href="#!" class="brand-logo"></a>
+        <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+            <i class="material-icons">menu</i>
+        </a>
+        <ul>
+            <li style="float:right">
+                <a href="https://www.vincere-solutions.com/krida" target="_blank">About</a>
+            </li>
+        </ul>  
+        <div class="nav-wrapper container">
+            <a href="#!" class="brand-logo"></a>
+        </div>
+    </nav>
+
+    <div style='margin: auto; margin-top: 5%; width:500px; height:100px;'>
+        <div style="width:40%; float:left">
+            <img id="myimg" src="" alt="" style= "width:100px; height:100px; float:right;">
+        </div>
+        <div style="width:60%; float:right; padding-left:10%;">
+            <p>Kid's nameeeeeeeeee</p> 
+            <p>Kid's age</p>
+        </div>
     </div>
-  </nav>
-            <div style="margin-top:15%;">
-                <div class="row center">
-                    <div class="col s2"></div>
-                    <div class="col s4">
-                            <button id="bst" class="btn-large waves-effect waves-light btn-small teal lighten-2" onClick="bst_load_ques()" style="min-width:310px;">Binet Simon Test</button>
-                    </div>
-                    <div class="col s4">
-                            <button id="vineland" class="btn-large waves-effect waves-light btn-small teal lighten-2" onClick="vl_load_ques()" style="min-width:310px;">Vineland Scale</button>
-                    </div>
-                </div>
-                <div class="row center">
-                    <div class="col s2"></div>
-                    <div class="col s4">
-                            <button id="gdt" class="btn-large waves-effect waves-light btn-small teal lighten-2" onClick="gdt_load_ques()" style="min-width:310px;">Gessel's Drawing Test</button>
-                    </div>
-                    <div class="col s4">
-                            <button id="rpm" class="btn-large waves-effect waves-light btn-small teal lighten-2" onClick="rpm_display_set_lower()" style="min-width:310px;">Ravens Progressive Matrix</button>
-                    </div>
-                </div>
+
+    <div style="margin-top:8%;">
+        <div class="row center">
+            <div class="col s2"></div>
+            <div class="col s4">
+                    <button id="bst" class="btn-large waves-effect waves-light btn-small teal lighten-2" onClick="bst_load_ques()" style="min-width:310px;">Binet Simon Test</button>
             </div>
-        
+            <div class="col s4">
+                    <button id="vineland" class="btn-large waves-effect waves-light btn-small teal lighten-2" onClick="vl_load_ques()" style="min-width:310px;">Vineland Scale</button>
+            </div>
+        </div>
+        <div class="row center">
+            <div class="col s2"></div>
+            <div class="col s4">
+                    <button id="gdt" class="btn-large waves-effect waves-light btn-small teal lighten-2" onClick="gdt_load_ques()" style="min-width:310px;">Gessel's Drawing Test</button>
+            </div>
+            <div class="col s4">
+                <button id="rpm" class="btn-large waves-effect waves-light btn-small teal lighten-2" onClick="rpm_display_set_lower()" style="min-width:310px;">Ravens Progressive Matrix</button>
+            </div>
+        </div>
+    </div>
     `;
     if(confirmation == 1){
-
-        
         contents+=
         `
             <br/>
@@ -53,10 +75,6 @@ function option_loadpage()
 
                 </div>
             </div>
-
-            
-
-
         `;
     }
     else{
@@ -77,14 +95,8 @@ function option_loadpage()
 
                 </div>
             </div>
-
-            
-
-
         `;
-
     }
-
 
     document.getElementById("change_ui").innerHTML = contents;
     if(initial_bst_value==-1&&initial_gdt_value==-1&&initial_vl_value==-1&&initial_rpm_value==-1)
@@ -109,33 +121,30 @@ function option_loadpage()
     }
 }
 
-
 function confirm()
 {
     var contents =
     `
     <nav class=" teal darken-1" role="navigation">
-    <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    <ul>
-      <li style="float:right"><a href="https://www.vincere-solutions.com/krida" target="_blank">About</a></li>
-    </ul>  
-    <div class="nav-wrapper container">
-        <a href="#!" class="brand-logo"></a>
-    </div>
-  </nav>
-            <h3 style="padding-top:15%; padding-bottom:1.5%; text-align:center;" >Does the patient have Intellectual Disablity?</h3>
-            <div class="row center">
-            <div class="col s4"></div>
-            <div class="col s2">
-                    <button id="yes" class="btn-large waves-effect waves-light btn-small teal lighten-2" value = 1 onClick ="load_options()" style="min-width:200px; min-height:50px;font-size:18px;">Yes</button>
-            </div>
-            <div class="col s2">
-                    <button id="no" class="btn-large waves-effect waves-light btn-small teal lighten-2" value = 0 onClick ="load_options()" style="min-width:200px; min-height:50px; font-size:18px;">No</button>
-            </div>
+        <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul>
+        <li style="float:right"><a href="https://www.vincere-solutions.com/krida" target="_blank">About</a></li>
+        </ul>  
+        <div class="nav-wrapper container">
+            <a href="#!" class="brand-logo"></a>
         </div>
-        
+    </nav>
+    <h3 style="padding-top:15%; padding-bottom:1.5%; text-align:center;" >Does the patient have Intellectual Disablity?</h3>
+    <div class="row center">
+    <div class="col s4"></div>
+    <div class="col s2">
+            <button id="yes" class="btn-large waves-effect waves-light btn-small teal lighten-2" value = 1 onClick ="load_options()" style="min-width:200px; min-height:50px;font-size:18px;">Yes</button>
+    </div>
+        <div class="col s2">
+            <button id="no" class="btn-large waves-effect waves-light btn-small teal lighten-2" value = 0 onClick ="load_options()" style="min-width:200px; min-height:50px; font-size:18px;">No</button>
+        </div>
+    </div>
     `;
-
 
     document.getElementById("change_ui").innerHTML = contents;
     var yes = document.getElementById('yes');

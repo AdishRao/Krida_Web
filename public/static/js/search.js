@@ -313,32 +313,30 @@ async function showReport(e) {
     </div>
   </nav>
 
-  <img src="" alt="" width="80px" height="50px" style="background:black;">
-        <h3 class="center" style="color: white;">Patient Report</h3>
-        <div class="container" style="background: white; border: 3px solid teal; padding: 0.5em 1em;">
-            <div>
-                <h6>
-                    <b>NAME: </b>` +
-    e.split(":")[0] +
-    `
-                </h6>
-            </div>            
+  <div style='margin: auto; margin-top: 1%; width:500px; height:100px;'>
+        <div style="width:40%; float:left">
+        <img id="myimg" src="" alt="" style= "width:100px; height:100px; float:right;">
         </div>
+        <div style="width:60%; float:right; padding-left:10%;">
+            <p>Name: ` + e.split(":")[0] +`</p> 
+            <p>DOB: ` + e.split(":")[1] +`</p>
+        </div>
+    </div>
 
-        <div class="container" style="margin-top: 20px; border: 3px solid teal; background: white;">
-            <!-- <h5 style="padding: 0.5em 0.7em; margin: 0em">Test Scores</h5>
-            <div class="divider" style="height: 7px;"></div> -->
-            <table>
-            <thead style="width:100%; background-color: #B9E5E0;">
-                <tr style="padding: 0.2em 1.2em;">
-                    <th>Test Date</th>
-                    <th>BST</th>
-                    <th>GDT</th>
-                    <th>RPM</th>
-                    <th>Vineland</th>
-                </tr>
-                </thead>
-                <tbody>`;
+  <div class="container" style="margin-top: 20px; border: 3px solid teal; background: white;">
+      <!-- <h5 style="padding: 0.5em 0.7em; margin: 0em">Test Scores</h5>
+      <div class="divider" style="height: 7px;"></div> -->
+      <table>
+      <thead style="width:100%; background-color: #B9E5E0;">
+          <tr style="padding: 0.2em 1.2em;">
+              <th>Test Date</th>
+              <th>BST</th>
+              <th>GDT</th>
+              <th>RPM</th>
+              <th>Vineland</th>
+          </tr>
+          </thead>
+          <tbody>`;
 
   var database = firebase.database();
   var testdata = await database

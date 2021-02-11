@@ -19,6 +19,7 @@ var gdt_age;
 var vl_age;
 var confirmation;
 var display_text;
+var storageRef;
 
 window.onload = login_option();
 
@@ -337,8 +338,8 @@ async function load_options() {
             <input type="text" placeholder="Full Name" id="Name"/>\
             <input type="text" placeholder="Gender" id="Gender"/>\
             <input type="date" placeholder="DOB(DD/MM/YYYY) - Age [6-9]" id="DOB"/>\
-            <input type="file" id="Photo"/>\
-            <input type="submit" id="new_student" class="btn-large waves-effect waves-light btn-small teal lighten-2"/>\
+            <input style="margin-top:10px;" type="file" id="Photo"/>\
+            <input style="margin-top:20px;" type="submit" id="new_student" class="btn-large waves-effect waves-light btn-small teal lighten-2"/>\
         </div></div>\
     </form>
   </div>
@@ -397,9 +398,14 @@ function add_student(e) {
     initial_vl_value = -1;
 
     unique_id = name + ':' + year + '-' + month + '-' + date;
-
-    var photo = document.getElementById("Photo").value;
-
+    
+    //store photo to firebase
+    var photo = document.getElementById("Photo").files[0];
+    console.log("photo");
+    console.log(photo);
+    storageRef = firebase.storage().ref('img/'+photo.name);
+    storageRef.put(photo);
+   
   //TODO: Remove guest login
   if(test_email!='test@gmail.com')
   {

@@ -1,10 +1,17 @@
 function result_loadpage()
 {   
     var contents = 
-    `<div style='background-color:black; width:50px; height:100px;'>
-        <img src="" alt="" width="" height="">
+    `
+    <div style='margin: auto; margin-top: 1%; width:500px; height:100px;'>
+        <div style="width:40%; float:left">
+        <img id="myimg" src="" alt="" style= "width:100px; height:100px; float:right;">
+        </div>
+        <div style="width:60%; float:right; padding-left:10%;">
+            <p>Kid's nameeeeeeeeee</p> 
+            <p>Kid's age</p>
+        </div>
     </div>
-    <div style='margin-top:8%;padding:0px 10px;'>
+    <div style='margin-top:5%;padding:0px 10px;'>
         <table id='add_result' style="border: 5px solid teal;">
         </table>
     </div>
